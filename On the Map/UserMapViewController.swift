@@ -10,29 +10,26 @@ import UIKit
 import MapKit
 
 
-class UserPinViewController: UIViewController, MKMapViewDelegate {
+class UserMapViewController: UIViewController {
     
-    var userPins = [UserPin]()
-    var annotations = [MKPointAnnotation]()
-
     @IBOutlet weak var mapView: MKMapView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ParseClient.sharedInstance().getUserPins { (userPins, error) in
             if let userPins = userPins {
-                self.userPins = userPins
-                self.pointAnnotationsFromUserPins()
+                (self.tabBarController as! UserTabBarController).userPins = userPins
+                let annotations = self.pointAnnotationsFromUserPins(userPins)
                 performUIUpdatesOnMain {
-                    self.mapView.addAnnotations(self.annotations)
+                    self.mapView.addAnnotations(annotations)
                 }
             }
         }
     }
 
-    func pointAnnotationsFromUserPins() {
+    private func pointAnnotationsFromUserPins(_ userPins: [UserPin]) -> [MKPointAnnotation] {
+        var annotations = [MKPointAnnotation]()
         for userPin in userPins {
             let annotation = MKPointAnnotation()
             let lat = CLLocationDegrees(userPin.latitude)
@@ -43,13 +40,16 @@ class UserPinViewController: UIViewController, MKMapViewDelegate {
             annotation.subtitle = userPin.mediaURL
             annotations.append(annotation)
         }
+        return annotations
     }
     
-    // MARK: - MKMapViewDelegate
+}
+
+
+// MARK: - MKMapViewDelegate
+
+extension UserMapViewController: MKMapViewDelegate {
     
-    // Here we create a view with a "right callout accessory view". You might choose to look into other
-    // decoration alternatives. Notice the similarity between this method and the cellForRowAtIndexPath
-    // method in TableViewDataSource.
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseId = "pin"
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
@@ -67,8 +67,6 @@ class UserPinViewController: UIViewController, MKMapViewDelegate {
         return pinView
     }
     
-    // This delegate method is implemented to respond to taps. It opens the system browser
-    // to the URL specified in the annotationViews subtitle property.
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.shared

@@ -98,26 +98,67 @@
             </objects>
             <point key="canvasLocation" x="-1959" y="-199"/>
         </scene>
-        <!--View Controller-->
+        <!--User List View Controller-->
         <scene sceneID="tgB-Jj-XZG">
             <objects>
-                <viewController id="vSJ-td-omp" sceneMemberID="viewController">
+                <viewController id="vSJ-td-omp" customClass="UserListViewController" customModule="On_the_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rgV-G6-hOw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qD3-4S-ZIz">
+                                <rect key="frame" x="0.0" y="44" width="375" height="685"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserTableViewCell" textLabel="U6L-Vi-52j" detailTextLabel="9np-rl-kNn" style="IBUITableViewCellStyleSubtitle" id="9q6-lo-fqF">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9q6-lo-fqF" id="MkZ-FC-nKC">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="U6L-Vi-52j">
+                                                    <rect key="frame" x="15" y="5" width="33.333333333333336" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9np-rl-kNn">
+                                                    <rect key="frame" x="15" y="25.333333333333332" width="32.666666666666664" height="14.333333333333334"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="5Y9-g9-LMW" firstAttribute="trailing" secondItem="qD3-4S-ZIz" secondAttribute="trailing" id="5J9-nV-Tmr"/>
+                            <constraint firstItem="qD3-4S-ZIz" firstAttribute="top" secondItem="5Y9-g9-LMW" secondAttribute="top" id="PIi-sz-Gyy"/>
+                            <constraint firstItem="qD3-4S-ZIz" firstAttribute="leading" secondItem="5Y9-g9-LMW" secondAttribute="leading" id="gZc-zJ-mfz"/>
+                            <constraint firstItem="5Y9-g9-LMW" firstAttribute="bottom" secondItem="qD3-4S-ZIz" secondAttribute="bottom" id="w6T-hF-dVY"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="5Y9-g9-LMW"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="icon_listview" id="kWV-Gv-Tav"/>
+                    <connections>
+                        <outlet property="tableView" destination="qD3-4S-ZIz" id="RVR-fE-N5S"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y0j-tL-men" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-246" y="98"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--User Tab Bar Controller-->
         <scene sceneID="kfQ-fS-esh">
             <objects>
-                <tabBarController storyboardIdentifier="MapListTabBarController" id="d8z-9e-9Mp" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MapListTabBarController" id="d8z-9e-9Mp" customClass="UserTabBarController" customModule="On_the_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mSi-L4-R1L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -132,10 +173,10 @@
             </objects>
             <point key="canvasLocation" x="-1199" y="-242"/>
         </scene>
-        <!--User Pin View Controller-->
+        <!--User Map View Controller-->
         <scene sceneID="VA8-pF-c8l">
             <objects>
-                <viewController storyboardIdentifier="UserPinViewController" id="o5q-6Z-Gk5" customClass="UserPinViewController" customModule="On_the_Map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserPinViewController" id="o5q-6Z-Gk5" customClass="UserMapViewController" customModule="On_the_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="F2h-TA-Age"/>
                         <viewControllerLayoutGuide type="bottom" id="4Z3-yQ-dPL"/>
