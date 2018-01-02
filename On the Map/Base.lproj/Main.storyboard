@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -65,7 +66,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="BCN-7m-8p5">
-                                <rect key="frame" x="177" y="401" width="20" height="20"/>
+                                <rect key="frame" x="177.66666666666666" y="401" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -95,9 +96,83 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-1959" y="-199"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tgB-Jj-XZG">
+            <objects>
+                <viewController id="vSJ-td-omp" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rgV-G6-hOw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="5Y9-g9-LMW"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="icon_listview" id="kWV-Gv-Tav"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y0j-tL-men" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-246" y="98"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="kfQ-fS-esh">
+            <objects>
+                <tabBarController storyboardIdentifier="MapListTabBarController" id="d8z-9e-9Mp" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mSi-L4-R1L">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="o5q-6Z-Gk5" kind="relationship" relationship="viewControllers" id="DMU-qz-tJF"/>
+                        <segue destination="vSJ-td-omp" kind="relationship" relationship="viewControllers" id="SJC-M6-O5n"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ule-MK-pL9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1199" y="-242"/>
+        </scene>
+        <!--User Pin View Controller-->
+        <scene sceneID="VA8-pF-c8l">
+            <objects>
+                <viewController storyboardIdentifier="UserPinViewController" id="o5q-6Z-Gk5" customClass="UserPinViewController" customModule="On_the_Map" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="F2h-TA-Age"/>
+                        <viewControllerLayoutGuide type="bottom" id="4Z3-yQ-dPL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mCM-Ur-5BI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ORW-ev-HVa">
+                                <rect key="frame" x="0.0" y="44" width="375" height="685"/>
+                                <connections>
+                                    <outlet property="delegate" destination="o5q-6Z-Gk5" id="iPE-4k-dOO"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ORW-ev-HVa" firstAttribute="leading" secondItem="mCM-Ur-5BI" secondAttribute="leadingMargin" constant="-16" id="EfX-mH-Bsa"/>
+                            <constraint firstItem="4Z3-yQ-dPL" firstAttribute="top" secondItem="ORW-ev-HVa" secondAttribute="bottom" id="MmL-vK-kk3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ORW-ev-HVa" secondAttribute="trailing" constant="-16" id="QGX-7H-SOi"/>
+                            <constraint firstItem="ORW-ev-HVa" firstAttribute="top" secondItem="mCM-Ur-5BI" secondAttribute="topMargin" id="eJf-DU-uVW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="POJ-ug-0Um"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="icon_mapview" id="SRT-HV-6Ju"/>
+                    <connections>
+                        <outlet property="mapView" destination="ORW-ev-HVa" id="xYN-tY-BBT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c0g-8I-5AN" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-266" y="-614"/>
         </scene>
     </scenes>
     <resources>
+        <image name="icon_listview" width="75" height="50"/>
+        <image name="icon_mapview" width="75" height="50"/>
         <image name="logo-u" width="62" height="62"/>
     </resources>
 </document>

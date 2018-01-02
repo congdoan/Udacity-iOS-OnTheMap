@@ -97,10 +97,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     fileprivate func showMainView() {
+        let controller = storyboard!.instantiateViewController(withIdentifier: "MapListTabBarController")
         DispatchQueue.main.async {
             self.spinner.stopAnimating()
-            
-            //TODO Present 'Map & List Tabbed View Controller'
+            // Present 'Map & List Tabbed View Controller'
+            self.present(controller, animated: true, completion: nil)
         }
     }
     

@@ -12,6 +12,11 @@
 		F4225E7B1FF9D5CE006F4AB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4225E791FF9D5CE006F4AB9 /* Main.storyboard */; };
 		F4225E7D1FF9D5CE006F4AB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4225E7C1FF9D5CE006F4AB9 /* Assets.xcassets */; };
 		F4225E801FF9D5CE006F4AB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4225E7E1FF9D5CE006F4AB9 /* LaunchScreen.storyboard */; };
+		F43C2CC01FFB47CE000BDB1A /* UserPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43C2CBF1FFB47CE000BDB1A /* UserPinViewController.swift */; };
+		F45DE4D21FFB9A9C00879360 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45DE4D11FFB9A9C00879360 /* GCDBlackBox.swift */; };
+		F4B768861FFB747400A78A98 /* UserPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B768851FFB747400A78A98 /* UserPin.swift */; };
+		F4B768881FFB7AC200A78A98 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B768871FFB7AC200A78A98 /* ParseClient.swift */; };
+		F4B7688A1FFB7B4300A78A98 /* ParseContants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B768891FFB7B4300A78A98 /* ParseContants.swift */; };
 		F4C4AC541FFB0A4C00FD29F0 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C4AC531FFB0A4C00FD29F0 /* Reachability.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +28,11 @@
 		F4225E7C1FF9D5CE006F4AB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4225E7F1FF9D5CE006F4AB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F4225E811FF9D5CE006F4AB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F43C2CBF1FFB47CE000BDB1A /* UserPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPinViewController.swift; sourceTree = "<group>"; };
+		F45DE4D11FFB9A9C00879360 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GCDBlackBox.swift; path = "../../Network-MiniApps/ios-nd-networking-master/TheMovieManager-v2/TheMovieManager/GCDBlackBox.swift"; sourceTree = "<group>"; };
+		F4B768851FFB747400A78A98 /* UserPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPin.swift; sourceTree = "<group>"; };
+		F4B768871FFB7AC200A78A98 /* ParseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
+		F4B768891FFB7B4300A78A98 /* ParseContants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseContants.swift; sourceTree = "<group>"; };
 		F4C4AC531FFB0A4C00FD29F0 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,15 +66,44 @@
 		F4225E741FF9D5CE006F4AB9 /* On the Map */ = {
 			isa = PBXGroup;
 			children = (
+				F4B768831FFB730900A78A98 /* Model */,
 				F4225E751FF9D5CE006F4AB9 /* AppDelegate.swift */,
+				F45DE4D11FFB9A9C00879360 /* GCDBlackBox.swift */,
 				F4225E771FF9D5CE006F4AB9 /* ViewController.swift */,
 				F4C4AC531FFB0A4C00FD29F0 /* Reachability.swift */,
 				F4225E791FF9D5CE006F4AB9 /* Main.storyboard */,
+				F43C2CBF1FFB47CE000BDB1A /* UserPinViewController.swift */,
 				F4225E7C1FF9D5CE006F4AB9 /* Assets.xcassets */,
 				F4225E7E1FF9D5CE006F4AB9 /* LaunchScreen.storyboard */,
 				F4225E811FF9D5CE006F4AB9 /* Info.plist */,
 			);
 			path = "On the Map";
+			sourceTree = "<group>";
+		};
+		F4B768821FFB72DD00A78A98 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				F4B768841FFB733600A78A98 /* Parse */,
+			);
+			path = Clients;
+			sourceTree = "<group>";
+		};
+		F4B768831FFB730900A78A98 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F4B768821FFB72DD00A78A98 /* Clients */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F4B768841FFB733600A78A98 /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+				F4B768851FFB747400A78A98 /* UserPin.swift */,
+				F4B768871FFB7AC200A78A98 /* ParseClient.swift */,
+				F4B768891FFB7B4300A78A98 /* ParseContants.swift */,
+			);
+			path = Parse;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,9 +178,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F45DE4D21FFB9A9C00879360 /* GCDBlackBox.swift in Sources */,
+				F4B768881FFB7AC200A78A98 /* ParseClient.swift in Sources */,
 				F4225E781FF9D5CE006F4AB9 /* ViewController.swift in Sources */,
 				F4225E761FF9D5CE006F4AB9 /* AppDelegate.swift in Sources */,
 				F4C4AC541FFB0A4C00FD29F0 /* Reachability.swift in Sources */,
+				F4B768861FFB747400A78A98 /* UserPin.swift in Sources */,
+				F43C2CC01FFB47CE000BDB1A /* UserPinViewController.swift in Sources */,
+				F4B7688A1FFB7B4300A78A98 /* ParseContants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +326,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "On the Map/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cdoan.On-the-Map";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -299,6 +344,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "On the Map/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cdoan.On-the-Map";
 				PRODUCT_NAME = "$(TARGET_NAME)";
