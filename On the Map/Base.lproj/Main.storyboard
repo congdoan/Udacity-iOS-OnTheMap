@@ -191,9 +191,14 @@
                                     <outlet property="delegate" destination="o5q-6Z-Gk5" id="iPE-4k-dOO"/>
                                 </connections>
                             </mapView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="vc1-Y9-x5z">
+                                <rect key="frame" x="169.66666666666666" y="368.66666666666669" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="vc1-Y9-x5z" firstAttribute="centerY" secondItem="POJ-ug-0Um" secondAttribute="centerY" id="B9I-vm-QLh"/>
+                            <constraint firstItem="vc1-Y9-x5z" firstAttribute="centerX" secondItem="POJ-ug-0Um" secondAttribute="centerX" id="BfC-nc-dpK"/>
                             <constraint firstItem="ORW-ev-HVa" firstAttribute="leading" secondItem="mCM-Ur-5BI" secondAttribute="leadingMargin" constant="-16" id="EfX-mH-Bsa"/>
                             <constraint firstItem="4Z3-yQ-dPL" firstAttribute="top" secondItem="ORW-ev-HVa" secondAttribute="bottom" id="MmL-vK-kk3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ORW-ev-HVa" secondAttribute="trailing" constant="-16" id="QGX-7H-SOi"/>
@@ -204,6 +209,7 @@
                     <tabBarItem key="tabBarItem" title="" image="icon_mapview" id="SRT-HV-6Ju"/>
                     <connections>
                         <outlet property="mapView" destination="ORW-ev-HVa" id="xYN-tY-BBT"/>
+                        <outlet property="spinner" destination="vc1-Y9-x5z" id="j5h-Dk-cpl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c0g-8I-5AN" sceneMemberID="firstResponder"/>

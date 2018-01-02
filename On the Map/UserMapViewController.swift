@@ -13,16 +13,23 @@ import MapKit
 class UserMapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        spinner.startAnimating()
         ParseClient.sharedInstance().getUserPins { (userPins, error) in
             if let userPins = userPins {
                 (self.tabBarController as! UserTabBarController).userPins = userPins
                 let annotations = self.pointAnnotationsFromUserPins(userPins)
-                performUIUpdatesOnMain {
+                DispatchQueue.main.async {
+                    self.spinner.stopAnimating()
                     self.mapView.addAnnotations(annotations)
+                }
+            } else if let error = error {
+                self.showAlert(message: error.localizedDescription) {
+                    self.spinner.stopAnimating()
                 }
             }
         }

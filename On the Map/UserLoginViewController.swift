@@ -50,7 +50,7 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
     
     fileprivate func authenticateUser() {
         if Reachability.isNotConnected() {
-            showAlert(message: "The Internet connection appears to be offline.")
+            showAlert(message: "The Internet connection appears to be offline.", alongsideUIAction: nil)
             return
         }
         
@@ -68,13 +68,13 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
             if let error = error {
-                self.showAlert(message: error.localizedDescription)
+                self.showAlertWithStopSpinner(message: error.localizedDescription)
                 print("ERROR: \(error)")
                 return
             }
             
             guard let data = data else {
-                self.showAlert(message: "No data was returned by the request.")
+                self.showAlertWithStopSpinner(message: "No data was returned by the request.")
                 return
             }
             let range = Range(5..<data.count), newData = data.subdata(in: range)
@@ -87,7 +87,7 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
                 } else {
                     message = resultJsonString
                 }
-                self.showAlert(message: message)
+                self.showAlertWithStopSpinner(message: message)
                 return
             }
             
@@ -96,7 +96,7 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
         task.resume()
     }
     
-    fileprivate func showMainView() {
+    private func showMainView() {
         let controller = storyboard!.instantiateViewController(withIdentifier: "MapListTabBarController")
         DispatchQueue.main.async {
             self.spinner.stopAnimating()
@@ -105,16 +105,9 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    fileprivate func showAlert(message: String) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Dismiss", style: .default, handler: { (_) in
-            alert.dismiss(animated: true, completion: nil)
-        })
-        alert.addAction(action)
-        DispatchQueue.main.async {
+    private func showAlertWithStopSpinner(message: String) {
+        showAlert(message: message) {
             self.spinner.stopAnimating()
-            
-            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -138,7 +131,7 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
     @objc func signUpLinkTapped(gesture: UITapGestureRecognizer) {
         if gesture.didTapAttributedTextInLabel(signUpLabel, inRange: signUpLinkRange) {
             if Reachability.isNotConnected() {
-                showAlert(message: "The Internet connection appears to be offline.")
+                showAlert(message: "The Internet connection appears to be offline.", alongsideUIAction: nil)
                 return
             }
             
@@ -180,6 +173,22 @@ extension UITapGestureRecognizer {
                                                             fractionOfDistanceBetweenInsertionPoints: nil)
         
         return NSLocationInRange(indexOfCharacter, targetRange)
+    }
+    
+}
+
+extension UIViewController {
+    
+    func showAlert(message: String, alongsideUIAction: (() -> Void)?) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Dismiss", style: .default, handler: { (_) in
+            alert.dismiss(animated: true, completion: nil)
+        })
+        alert.addAction(action)
+        DispatchQueue.main.async {
+            alongsideUIAction?()
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
 }
