@@ -76,11 +76,7 @@ extension UserMapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
-            let app = UIApplication.shared
-            if let toOpen = view.annotation?.subtitle! {
-                let link = URL(string: toOpen)!
-                app.open(link, options: [:], completionHandler: nil)
-            }
+            checkOpenLink(view.annotation?.subtitle!)
         }
     }
 

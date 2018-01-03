@@ -176,19 +176,3 @@ extension UITapGestureRecognizer {
     }
     
 }
-
-extension UIViewController {
-    
-    func showAlert(message: String, alongsideUIAction: (() -> Void)?) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Dismiss", style: .default, handler: { (_) in
-            alert.dismiss(animated: true, completion: nil)
-        })
-        alert.addAction(action)
-        DispatchQueue.main.async {
-            alongsideUIAction?()
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-    
-}

@@ -47,4 +47,8 @@ extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
         return userPins.count
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        checkOpenLink(userPins[indexPath.row].mediaURL)
+    }
+    
 }
