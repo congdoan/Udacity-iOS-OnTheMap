@@ -11,6 +11,8 @@ extension ParseClient {
     struct JSONResponseKeys {
         // MARK: StudentLocation
         static let results = "results"
+        static let objectId = "objectId"
+        static let uniqueKey =  "uniqueKey"
         static let firstName = "firstName"
         static let lastName = "lastName"
         static let mediaURL = "mediaURL"

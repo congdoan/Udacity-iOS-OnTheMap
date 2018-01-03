@@ -29,6 +29,24 @@ class TabItemViewController: UIViewController {
     }
     
     @objc func showPostLocationVC() {
+        if ParseClient.sharedInstance().objectIdOfStudentLocationOfCurrentUser != nil {
+            let message = "You have already posted a Student Location. Would you like to Overwrite it"
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            let actionOverwrite = UIAlertAction(title: "Overwrite", style: .default) { (_) in
+                self.pushPostLocationVC()
+            }
+            alert.addAction(actionOverwrite)
+            let actionCancel = UIAlertAction(title: "Cancel", style: .default) { (_) in
+                alert.dismiss(animated: true, completion: nil)
+            }
+            alert.addAction(actionCancel)
+            present(alert, animated: true, completion: nil)
+        } else {
+            pushPostLocationVC()
+        }
+    }
+    
+    private func pushPostLocationVC() {
         let controller = storyboard!.instantiateViewController(withIdentifier: "PostLocationViewController")
         navigationController?.pushViewController(controller, animated: true)
     }

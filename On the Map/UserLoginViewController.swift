@@ -25,7 +25,7 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
         configureUIControls()
     }
     
-    fileprivate func configureUIControls() {
+    private func configureUIControls() {
         emailField.delegate = self
         
         passwordField.delegate = self
@@ -45,58 +45,30 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func logInButtonPressed(sender: Any) {
-        authenticateUser()
-    }
-    
-    fileprivate func authenticateUser() {
         if Reachability.isNotConnected() {
             showAlert(message: "The Internet connection appears to be offline.", alongsideUIAction: nil)
             return
         }
         
-        spinner.startAnimating()
-        
-        let urlString = "https://www.udacity.com/api/session"
-        let url = URL(string: urlString)!
-        var request = URLRequest(url: url)
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.httpMethod = "POST"
-        let email = emailField.text!, password = passwordField.text!
-        let userAuthCredentails = "{\"udacity\": {\"username\": \"\(email)\", \"password\": \"\(password)\"}}"
-        request.httpBody = userAuthCredentails.data(using: .utf8)
-        let session = URLSession.shared
-        let task = session.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                self.showAlertWithStopSpinner(message: error.localizedDescription)
-                print("ERROR: \(error)")
-                return
-            }
-            
-            guard let data = data else {
-                self.showAlertWithStopSpinner(message: "No data was returned by the request.")
-                return
-            }
-            let range = Range(5..<data.count), newData = data.subdata(in: range)
-            let resultJsonString = String(data: newData, encoding: .utf8)!
-            
-            if let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode < 200 || statusCode > 299 {
-                let message: String!
-                if statusCode == 403 || statusCode == 401 {
-                    message = "Incorrect Email or Password."
-                } else {
-                    message = resultJsonString
-                }
-                self.showAlertWithStopSpinner(message: message)
-                return
-            }
-            
-            self.showMainView()
-        }
-        task.resume()
+        authenticateUser()
     }
     
-    private func showMainView() {
+    private func authenticateUser() {
+        spinner.startAnimating()
+        
+        let email = emailField.text!, password = passwordField.text!
+        let udacityClient = UdacityClient.sharedInstance()
+        udacityClient.authenticateUser(email: email, password: password) { (accountId, error) in
+            if let error = error {
+                self.showAlertWithStopSpinner(message: error.localizedDescription)
+            } else {
+                udacityClient.getPublicUserInfo(accountId: accountId!)
+                self.showMainViewWithStopSpinner()
+            }
+        }
+    }
+    
+    private func showMainViewWithStopSpinner() {
         let controller = storyboard!.instantiateViewController(withIdentifier: "MapListTabBarController")
         DispatchQueue.main.async {
             self.spinner.stopAnimating()

@@ -19,10 +19,10 @@ class MapForPlaceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        showPinAtCoordinate()
+        showPlacemarkInMap()
     }
     
-    func showPinAtCoordinate() {
+    func showPlacemarkInMap() {
         let annotation = MKPointAnnotation()
         var addressComponents = [String]()
         if let place = placemark.name {
@@ -44,6 +44,9 @@ class MapForPlaceViewController: UIViewController {
     }
 
     @IBAction func finishButtonPressed(_ sender: Any) {
+        //TODO: POST or PUT UserLocation object to Parse
+        print("PublicUserInfo: \(UdacityClient.sharedInstance().userInfo)")
+        
         navigationController?.popToRootViewController(animated: true)
     }
     

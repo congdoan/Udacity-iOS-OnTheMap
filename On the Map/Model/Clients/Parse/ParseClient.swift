@@ -9,9 +9,11 @@
 import UIKit
 
 class ParseClient: NSObject {
+    
+    var objectIdOfStudentLocationOfCurrentUser: String?
 
     // Parse API: GETting Student Locations
-    func getUserPins(_ completionHandlerForUserPins: @escaping (_ results: [UserPin]?, _ error: Error?) -> Void) {
+    func getUserPins(completionHandler: @escaping (_ results: [UserPin]?, _ error: Error?) -> Void) {
         let urlString = "https://parse.udacity.com/parse/classes/StudentLocation", url = URL(string: urlString)!
         var request = URLRequest(url: url)
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
@@ -19,11 +21,11 @@ class ParseClient: NSObject {
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             func sendError(_ errorDescription: String) {
                 let userInfo = [NSLocalizedDescriptionKey : errorDescription]
-                completionHandlerForUserPins(nil, NSError(domain: "getUserPins", code: 1, userInfo: userInfo))
+                completionHandler(nil, NSError(domain: "getUserPins", code: 1, userInfo: userInfo))
             }
             
             if let error = error {
-                completionHandlerForUserPins(nil, error)
+                completionHandler(nil, error)
                 return
             }
             
@@ -41,12 +43,11 @@ class ParseClient: NSObject {
             
             do {
                 let parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String : Any]
-                let resultsKey = ParseClient.JSONResponseKeys.results
-                if let results = parsedResult[resultsKey] as? [[String:Any]] {
+                if let results = parsedResult[JSONResponseKeys.results] as? [[String:Any]] {
                     let userPins = UserPin.userPinsFromResults(results)
-                    completionHandlerForUserPins(userPins, nil)
+                    completionHandler(userPins, nil)
                 } else {
-                    let errormessage = "Could not parse the below dictionary using the key '\(resultsKey)':\n\(parsedResult)"
+                    let errormessage = "Could not parse the below dictionary using the key '\(JSONResponseKeys.results)':\n\(parsedResult)"
                     sendError(errormessage)
                 }
             } catch {
@@ -54,7 +55,6 @@ class ParseClient: NSObject {
                 let errormessage = "Could not parse the below data as JSON:\n\(dataString)"
                 sendError(errormessage)
             }
-            
         }
         task.resume()
     }
