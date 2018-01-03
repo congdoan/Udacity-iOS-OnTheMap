@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 
-class UserMapViewController: UIViewController {
+class UserMapViewController: TabItemViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
@@ -34,7 +34,7 @@ class UserMapViewController: UIViewController {
             }
         }
     }
-
+    
     private func pointAnnotationsFromUserPins(_ userPins: [UserPin]) -> [MKPointAnnotation] {
         var annotations = [MKPointAnnotation]()
         for userPin in userPins {

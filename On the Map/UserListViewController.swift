@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserListViewController: UIViewController {
+class UserListViewController: TabItemViewController {
 
     @IBOutlet weak var tableView: UITableView!
     

@@ -12,11 +12,4 @@ class UserTabBarController: UITabBarController {
 
     var userPins: [UserPin]!
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
 }
