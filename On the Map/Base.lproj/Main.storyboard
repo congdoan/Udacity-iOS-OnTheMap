@@ -295,6 +295,9 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="findLocationButtonPressed:" destination="Bou-cu-YN7" eventType="touchUpInside" id="Tx2-vH-l2t"/>
+                                </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Zd4-on-ITD">
                                 <rect key="frame" x="177.66666666666666" y="401" width="20" height="20"/>
@@ -315,10 +318,68 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EH3-4d-pQG"/>
                     </view>
+                    <connections>
+                        <outlet property="locationField" destination="6Zz-z3-Rr3" id="EiV-dW-PbM"/>
+                        <outlet property="spinner" destination="Zd4-on-ITD" id="QGg-ph-PtJ"/>
+                        <outlet property="websiteField" destination="qwc-FT-OcW" id="BJC-JO-ZUs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JBg-d6-AU7" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1449" y="-336"/>
+        </scene>
+        <!--Map For Place View Controller-->
+        <scene sceneID="8Zd-Dt-c2f">
+            <objects>
+                <viewController storyboardIdentifier="MapForPlaceViewController" id="72v-gr-Xlc" customClass="MapForPlaceViewController" customModule="On_the_Map" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aOa-J6-e3e"/>
+                        <viewControllerLayoutGuide type="bottom" id="oGo-Y9-ixv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Duv-U4-VWJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="jZe-mX-eHE">
+                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <connections>
+                                    <outlet property="delegate" destination="72v-gr-Xlc" id="NLN-8E-3uC"/>
+                                </connections>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eaf-32-whd">
+                                <rect key="frame" x="30" y="718" width="315" height="30"/>
+                                <color key="backgroundColor" red="0.45876650000000002" green="0.73327666609999997" blue="0.96080166099999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="FINISH">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="finishButtonPressed:" destination="72v-gr-Xlc" eventType="touchUpInside" id="FQ2-aH-4VS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Eaf-32-whd" firstAttribute="leading" secondItem="P4A-6C-geb" secondAttribute="leading" constant="30" id="2J1-J0-qyu"/>
+                            <constraint firstItem="oGo-Y9-ixv" firstAttribute="top" secondItem="jZe-mX-eHE" secondAttribute="bottom" id="H7B-4e-ELb"/>
+                            <constraint firstItem="jZe-mX-eHE" firstAttribute="leading" secondItem="Duv-U4-VWJ" secondAttribute="leadingMargin" constant="-16" id="cZQ-qO-j6i"/>
+                            <constraint firstItem="jZe-mX-eHE" firstAttribute="top" secondItem="Duv-U4-VWJ" secondAttribute="topMargin" id="fGr-7G-VCz"/>
+                            <constraint firstItem="P4A-6C-geb" firstAttribute="bottom" secondItem="Eaf-32-whd" secondAttribute="bottom" constant="30" id="fSy-0e-abX"/>
+                            <constraint firstItem="P4A-6C-geb" firstAttribute="trailing" secondItem="Eaf-32-whd" secondAttribute="trailing" constant="30" id="mBP-Qd-NZe"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jZe-mX-eHE" secondAttribute="trailing" constant="-16" id="xgn-RO-hnr"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="P4A-6C-geb"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="726-WR-ypM"/>
+                    <connections>
+                        <outlet property="mapView" destination="jZe-mX-eHE" id="Fae-4a-hMQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ePC-2l-4wK" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1952" y="-336"/>
         </scene>
     </scenes>
     <resources>

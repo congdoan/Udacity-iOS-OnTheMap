@@ -23,6 +23,13 @@ extension UIViewController {
         }
     }
     
+    func isWebUrlValid(_ urlString: String?) -> Bool {
+        if let urlString = urlString, let url = URL(string: urlString) {
+            return UIApplication.shared.canOpenURL(url)
+        }
+        return false
+    }
+    
     func checkOpenLink(_ urlString: String?) {
         let app = UIApplication.shared
         guard let urlString = urlString, let url = URL(string: urlString), app.canOpenURL(url) else {
@@ -30,6 +37,10 @@ extension UIViewController {
             return
         }
         app.open(url, options: [:], completionHandler: nil)
+    }
+    
+    func setTabBarVisibility(_ visible: Bool) {
+        tabBarController?.tabBar.isHidden = !visible
     }
     
 }

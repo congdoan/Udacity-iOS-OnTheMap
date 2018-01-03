@@ -18,6 +18,12 @@ class TabItemViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showPostLocationVC))
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setTabBarVisibility(true)
+    }
+    
     @objc func dismissTarBarController() {
         tabBarController?.dismiss(animated: true, completion: nil)
     }
