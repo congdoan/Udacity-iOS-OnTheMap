@@ -81,7 +81,7 @@ class PostLocationViewController: UIViewController {
             self.present(alert, animated: true)
             
             // duration in seconds
-            let duration: Double = 1.5
+            let duration: Double = 1
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + duration) {
                 alert.dismiss(animated: true)
                 onCloseHandler()

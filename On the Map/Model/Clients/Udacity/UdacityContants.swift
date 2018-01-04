@@ -6,8 +6,12 @@
 //  Copyright © 2018 Cong Doan. All rights reserved.
 //
 
+import Foundation
+
 
 extension UdacityClient {
+    
+    static let BASE_API_URL = URL(string: "https://www.udacity.com/api")!
     
     struct JSONResponseKeys {
         // MARK: Account

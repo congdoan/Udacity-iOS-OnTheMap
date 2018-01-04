@@ -86,17 +86,10 @@
 			children = (
 				F4B768831FFB730900A78A98 /* Model */,
 				F4225E751FF9D5CE006F4AB9 /* AppDelegate.swift */,
-				F4E2111B1FFBCE1400728A32 /* UserLoginViewController.swift */,
 				F4C4AC531FFB0A4C00FD29F0 /* Reachability.swift */,
-				F4225E791FF9D5CE006F4AB9 /* Main.storyboard */,
-				F43446651FFBB93800F8969A /* UserListViewController.swift */,
-				F4CAC4671FFC5E6200BEDB50 /* UIViewController+extentions.swift */,
-				F43446671FFBBB0100F8969A /* UserTabBarController.swift */,
-				F43C2CBF1FFB47CE000BDB1A /* UserMapViewController.swift */,
-				F4A3A18E1FFCC47800EE172D /* PostLocationViewController.swift */,
-				F4A3A18C1FFC95EB00EE172D /* TabItemViewController.swift */,
-				F4A3A18A1FFC865A00EE172D /* InputToPostLocationViewController.swift */,
+				F4E7B50F1FFE7D0000CC8D6E /* ViewController */,
 				F4225E7C1FF9D5CE006F4AB9 /* Assets.xcassets */,
+				F4225E791FF9D5CE006F4AB9 /* Main.storyboard */,
 				F4225E7E1FF9D5CE006F4AB9 /* LaunchScreen.storyboard */,
 				F4225E811FF9D5CE006F4AB9 /* Info.plist */,
 			);
@@ -139,6 +132,21 @@
 				F4CD2CDA1FFD25BA002F7791 /* PublicUserInfo.swift */,
 			);
 			path = Udacity;
+			sourceTree = "<group>";
+		};
+		F4E7B50F1FFE7D0000CC8D6E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F4E2111B1FFBCE1400728A32 /* UserLoginViewController.swift */,
+				F43446671FFBBB0100F8969A /* UserTabBarController.swift */,
+				F4A3A18C1FFC95EB00EE172D /* TabItemViewController.swift */,
+				F43C2CBF1FFB47CE000BDB1A /* UserMapViewController.swift */,
+				F43446651FFBB93800F8969A /* UserListViewController.swift */,
+				F4A3A18A1FFC865A00EE172D /* InputToPostLocationViewController.swift */,
+				F4A3A18E1FFCC47800EE172D /* PostLocationViewController.swift */,
+				F4CAC4671FFC5E6200BEDB50 /* UIViewController+extentions.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
