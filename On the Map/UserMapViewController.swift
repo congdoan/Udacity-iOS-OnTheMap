@@ -18,20 +18,23 @@ class UserMapViewController: TabItemViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fetchData()
+    }
+    
+    override func showDataFetchingIndicator() {
         spinner.startAnimating()
-        ParseClient.sharedInstance().getUserPins { (userPins, error) in
-            if let userPins = userPins {
-                (self.tabBarController as! UserTabBarController).userPins = userPins
-                let annotations = self.pointAnnotationsFromUserPins(userPins)
-                DispatchQueue.main.async {
-                    self.spinner.stopAnimating()
-                    self.mapView.addAnnotations(annotations)
-                }
-            } else if let error = error {
-                self.showAlert(message: error.localizedDescription) {
-                    self.spinner.stopAnimating()
-                }
-            }
+    }
+    
+    override func hideDataFetchingIndicator() {
+        DispatchQueue.main.async {
+            self.spinner.stopAnimating()
+        }
+    }
+    
+    override func updateUI() {
+        let annotations = pointAnnotationsFromUserPins((tabBarController as! UserTabBarController).userPins)
+        DispatchQueue.main.async {
+            self.mapView.addAnnotations(annotations)
         }
     }
     

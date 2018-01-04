@@ -67,6 +67,7 @@
                             </label>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="BCN-7m-8p5">
                                 <rect key="frame" x="177.66666666666666" y="401" width="20" height="20"/>
+                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -136,11 +137,17 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="eSe-JO-Ore">
+                                <rect key="frame" x="177" y="398.66666666666669" width="20" height="20"/>
+                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="eSe-JO-Ore" firstAttribute="centerY" secondItem="5Y9-g9-LMW" secondAttribute="centerY" id="2P6-Hf-tB6"/>
                             <constraint firstItem="5Y9-g9-LMW" firstAttribute="trailing" secondItem="qD3-4S-ZIz" secondAttribute="trailing" id="5J9-nV-Tmr"/>
                             <constraint firstItem="qD3-4S-ZIz" firstAttribute="top" secondItem="5Y9-g9-LMW" secondAttribute="top" id="PIi-sz-Gyy"/>
+                            <constraint firstItem="eSe-JO-Ore" firstAttribute="centerX" secondItem="5Y9-g9-LMW" secondAttribute="centerX" id="U65-3Q-Gss"/>
                             <constraint firstItem="qD3-4S-ZIz" firstAttribute="leading" secondItem="5Y9-g9-LMW" secondAttribute="leading" id="gZc-zJ-mfz"/>
                             <constraint firstItem="5Y9-g9-LMW" firstAttribute="bottom" secondItem="qD3-4S-ZIz" secondAttribute="bottom" id="w6T-hF-dVY"/>
                         </constraints>
@@ -149,6 +156,7 @@
                     <tabBarItem key="tabBarItem" title="" image="icon_listview" id="kWV-Gv-Tav"/>
                     <navigationItem key="navigationItem" id="mfB-T6-tbc"/>
                     <connections>
+                        <outlet property="spinner" destination="eSe-JO-Ore" id="EdU-Aw-7Ku"/>
                         <outlet property="tableView" destination="qD3-4S-ZIz" id="RVR-fE-N5S"/>
                     </connections>
                 </viewController>
@@ -226,8 +234,9 @@
                                     <outlet property="delegate" destination="o5q-6Z-Gk5" id="iPE-4k-dOO"/>
                                 </connections>
                             </mapView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="vc1-Y9-x5z">
-                                <rect key="frame" x="169" y="390" width="37" height="37"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="vc1-Y9-x5z">
+                                <rect key="frame" x="178" y="399" width="20" height="20"/>
+                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -301,6 +310,7 @@
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Zd4-on-ITD">
                                 <rect key="frame" x="177.66666666666666" y="401" width="20" height="20"/>
+                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -326,7 +336,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JBg-d6-AU7" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1449" y="-336"/>
+            <point key="canvasLocation" x="1202" y="-310"/>
         </scene>
         <!--Post Location View Controller-->
         <scene sceneID="8Zd-Dt-c2f">
@@ -361,6 +371,7 @@
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="yDa-wy-X80">
                                 <rect key="frame" x="177" y="401" width="20" height="20"/>
+                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -385,7 +396,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ePC-2l-4wK" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2127" y="-348"/>
+            <point key="canvasLocation" x="1874" y="-310"/>
         </scene>
     </scenes>
     <resources>

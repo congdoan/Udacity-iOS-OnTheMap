@@ -53,7 +53,9 @@ class PostLocationViewController: UIViewController {
         spinner.startAnimating()
         let location = prepareUserLocationObject()
         ParseClient.sharedInstance().postOrPutUserLocation(location) { (success, error) in
-            self.spinner.stopAnimating()
+            DispatchQueue.main.async {
+                self.spinner.stopAnimating()
+            }
             if let error = error {
                 self.showAlert(message: error.localizedDescription, alongsideUIAction: nil)
                 return

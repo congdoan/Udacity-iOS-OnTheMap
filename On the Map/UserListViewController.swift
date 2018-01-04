@@ -10,9 +10,10 @@ import UIKit
 
 class UserListViewController: TabItemViewController {
 
-    @IBOutlet weak var tableView: UITableView!
-    
     var userPins: [UserPin]!
+
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +21,28 @@ class UserListViewController: TabItemViewController {
         tableView.delegate = self
         tableView.dataSource = self
         userPins = (tabBarController as! UserTabBarController).userPins
+        
+        //Fatal error: Unexpectedly found nil while unwrapping an Optional value WHEN NOT completing Fetch userPins
         print(userPins.count)
     }
 
+    override func showDataFetchingIndicator() {
+        spinner.startAnimating()
+    }
+    
+    override func hideDataFetchingIndicator() {
+        DispatchQueue.main.async {
+            self.spinner.stopAnimating()
+        }
+    }
+    
+    override func updateUI() {
+        userPins = (tabBarController as! UserTabBarController).userPins
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
 }
 
 

@@ -15,7 +15,9 @@ class TabItemViewController: UIViewController {
 
         navigationItem.title = "On the Map"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "LOGOUT", style: .plain, target: self, action: #selector(dismissTarBarController))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showPostLocationVC))
+        let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showPostLocationVC))
+        let refreshItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(fetchData))
+        navigationItem.rightBarButtonItems = [addItem, refreshItem]
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +46,30 @@ class TabItemViewController: UIViewController {
         } else {
             pushPostLocationVC()
         }
+    }
+    
+    @objc func fetchData() {
+        showDataFetchingIndicator()
+        
+        ParseClient.sharedInstance().getUserPins { (userPins, error) in
+            self.hideDataFetchingIndicator()
+            
+            if let userPins = userPins {
+                (self.tabBarController as! UserTabBarController).userPins = userPins
+                self.updateUI()
+            } else if let error = error {
+                self.showAlert(message: error.localizedDescription, alongsideUIAction: nil)
+            }
+        }
+    }
+    
+    func showDataFetchingIndicator() {
+    }
+    
+    func hideDataFetchingIndicator() {
+    }
+    
+    func updateUI() {
     }
     
     private func pushPostLocationVC() {
