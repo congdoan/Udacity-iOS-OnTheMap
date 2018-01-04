@@ -6,8 +6,11 @@
 //  Copyright © 2018 Cong Doan. All rights reserved.
 //
 
+import Foundation
+
 
 struct UserLocation {
+    
     let uniqueKey: String
     let firstName: String?
     let lastName: String?
@@ -15,4 +18,15 @@ struct UserLocation {
     let mediaURL: String
     let latitude: Double
     let longitude: Double
+
+    var jsonData: Data {
+        let firstName = self.firstName ?? "[No First Name]"
+        let lastName = self.lastName ?? "[No Last Name]"
+        let dict: [String:Any] = ["uniqueKey":uniqueKey,
+                                  "firstName":firstName, "lastName":lastName,
+                                  "mapString":mapString, "mediaURL":mediaURL,
+                                  "latitude":latitude, "longitude":longitude]
+        return try! JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+    }
+
 }

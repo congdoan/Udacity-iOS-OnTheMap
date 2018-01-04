@@ -1,5 +1,5 @@
 //
-//  UserPinViewController.swift
+//  UserMapViewController.swift
 //  On the Map
 //
 //  Created by Cong Doan on 1/2/18.

@@ -11,65 +11,105 @@ import MapKit
 
 
 class PostLocationViewController: UIViewController {
-
-    @IBOutlet weak var locationField: UITextField!
-    @IBOutlet weak var websiteField: UITextField!
+    
+    var placemark: CLPlacemark!
+    var mapString: String!
+    var mediaURL: String!
+    
+    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Post Location"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "CANCEL", style: .plain, target: self, action: #selector(popNavigationStack))
-        
-        setTabBarVisibility(false)
+        navigationItem.title = "Confirm Location"
+        showPlacemarkInMap()
     }
     
-    @IBAction func findLocationButtonPressed(_ sender: Any) {
-        if validateInput() {
-            geocodeLocationString(completionHandler: { (placemark) in
-                if let placemark = placemark {
-                    self.openMapForPlace(placemark)
-                } else {
-                    self.showAlert(message: "Could Not Geocode the Location String.", alongsideUIAction: nil)
-                }
-            })
+    func showPlacemarkInMap() {
+        let annotation = MKPointAnnotation()
+        var addressComponents = [String]()
+        if let place = placemark.name {
+            addressComponents.append(place)
         }
-    }
-    
-    private func openMapForPlace(_ placemark: CLPlacemark) {
-        let controller = storyboard?.instantiateViewController(withIdentifier: "MapForPlaceViewController") as! MapForPlaceViewController
-        controller.placemark = placemark
-        navigationController?.pushViewController(controller, animated: true)
-    }
-    
-    private func validateInput() -> Bool {
-        if locationField.text! == "" || websiteField.text! == "" {
-            showAlert(message: "Empty Location or Link.", alongsideUIAction: nil)
-            return false
+        if let city = placemark.locality, !addressComponents.contains(city) {
+            addressComponents.append(city)
         }
-        if !isWebUrlValid(websiteField.text) {
-            showAlert(message: "Invalid Link. It must start with 'http(s)://'.", alongsideUIAction: nil)
-            return false
+        if let state = placemark.administrativeArea, !addressComponents.contains(state) {
+            addressComponents.append(state)
         }
-        return true
-    }
-    
-    func geocodeLocationString(completionHandler: @escaping (CLPlacemark?) -> Void) {
-        let addressString = locationField.text!
-        let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(addressString) { (placemarks, error) in
-            guard error == nil else {
-                print("Geocoding Error: \(error!)")
-                completionHandler(nil)
-                return
-            }
-            completionHandler(placemarks?.first)
+        if let country = placemark.country, !addressComponents.contains(country) {
+            addressComponents.append(country)
         }
-    }
-    
-    @objc func popNavigationStack() {
-        navigationController?.popViewController(animated: true)
+        mapString = addressComponents.joined(separator: ", ")
+        annotation.title = mapString
+        annotation.coordinate = placemark.location!.coordinate
+        mapView.centerCoordinate = annotation.coordinate
+        mapView.addAnnotation(annotation)
     }
 
+    @IBAction func finishButtonPressed(_ sender: Any) {
+        // POST or PUT UserLocation object to Parse
+        spinner.startAnimating()
+        let location = prepareUserLocationObject()
+        ParseClient.sharedInstance().postOrPutUserLocation(location) { (success, error) in
+            self.spinner.stopAnimating()
+            if let error = error {
+                self.showAlert(message: error.localizedDescription, alongsideUIAction: nil)
+                return
+            }
+            self.showAutoCloseAlert(message: "User Location Posted/Updated!") {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+        }
+    }
+    
+    private func showAutoCloseAlert(message: String, onCloseHandler: @escaping () -> Void) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+            
+            // duration in seconds
+            let duration: Double = 1.5
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + duration) {
+                alert.dismiss(animated: true)
+                onCloseHandler()
+            }
+        }
+    }
+    
+    private func prepareUserLocationObject() -> UserLocation {
+        let userInfo = UdacityClient.sharedInstance().userInfo!
+        let coordinate = placemark.location!.coordinate
+        let location = UserLocation(uniqueKey: userInfo.accountId,
+                                    firstName: userInfo.firstName, lastName: userInfo.lastName,
+                                    mapString: mapString, mediaURL: mediaURL,
+                                    latitude: coordinate.latitude, longitude: coordinate.longitude)
+        return location
+    }
+    
 }
+
+
+// MARK: - MKMapViewDelegate
+
+extension PostLocationViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseId = "pin"
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+        
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.pinTintColor = .red
+        }
+        else {
+            pinView!.annotation = annotation
+        }
+        
+        return pinView
+    }
+    
+}
+

@@ -38,7 +38,7 @@ struct UserPin {
                 userPins.append(userPin)
                 
                 if let uniqueKey = result[ParseClient.JSONResponseKeys.uniqueKey] as? String, uniqueKey == udacityAccoundId {
-                    parseClient.objectIdOfStudentLocationOfCurrentUser = (result[ParseClient.JSONResponseKeys.objectId] as! String)
+                    parseClient.objectIdOfUserLocation = (result[ParseClient.JSONResponseKeys.objectId] as! String)
                     myPostedLocationCount += 1
                 }
             }
@@ -47,7 +47,7 @@ struct UserPin {
         print("# of userPins : \(userPins.count)")
         print("emptyNameCount: \(emptyNameCount)")
         print("myPostedLocationCount                 : \(myPostedLocationCount)")
-        print("objectIdOfStudentLocationOfCurrentUser: \(parseClient.objectIdOfStudentLocationOfCurrentUser ?? "nil")")
+        print("objectIdOfStudentLocationOfCurrentUser: \(parseClient.objectIdOfUserLocation ?? "nil")")
 
         return userPins
     }

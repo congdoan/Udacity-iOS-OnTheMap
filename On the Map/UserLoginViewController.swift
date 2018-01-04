@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  UserLoginViewController.swift
 //  On the Map
 //
 //  Created by Cong Doan on 1/1/18.

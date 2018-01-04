@@ -251,10 +251,10 @@
             </objects>
             <point key="canvasLocation" x="473" y="-633"/>
         </scene>
-        <!--Post Location View Controller-->
+        <!--Input To Post Location View Controller-->
         <scene sceneID="qSe-Ld-lPR">
             <objects>
-                <viewController storyboardIdentifier="PostLocationViewController" id="Bou-cu-YN7" customClass="PostLocationViewController" customModule="On_the_Map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostLocationViewController" id="Bou-cu-YN7" customClass="InputToPostLocationViewController" customModule="On_the_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mWJ-L5-u0K">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -328,10 +328,10 @@
             </objects>
             <point key="canvasLocation" x="1449" y="-336"/>
         </scene>
-        <!--Map For Place View Controller-->
+        <!--Post Location View Controller-->
         <scene sceneID="8Zd-Dt-c2f">
             <objects>
-                <viewController storyboardIdentifier="MapForPlaceViewController" id="72v-gr-Xlc" customClass="MapForPlaceViewController" customModule="On_the_Map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapForPlaceViewController" id="72v-gr-Xlc" customClass="PostLocationViewController" customModule="On_the_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aOa-J6-e3e"/>
                         <viewControllerLayoutGuide type="bottom" id="oGo-Y9-ixv"/>
@@ -340,8 +340,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="jZe-mX-eHE">
-                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="jZe-mX-eHE">
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <connections>
                                     <outlet property="delegate" destination="72v-gr-Xlc" id="NLN-8E-3uC"/>
                                 </connections>
@@ -359,27 +359,33 @@
                                     <action selector="finishButtonPressed:" destination="72v-gr-Xlc" eventType="touchUpInside" id="FQ2-aH-4VS"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="yDa-wy-X80">
+                                <rect key="frame" x="177" y="401" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Eaf-32-whd" firstAttribute="leading" secondItem="P4A-6C-geb" secondAttribute="leading" constant="30" id="2J1-J0-qyu"/>
                             <constraint firstItem="oGo-Y9-ixv" firstAttribute="top" secondItem="jZe-mX-eHE" secondAttribute="bottom" id="H7B-4e-ELb"/>
                             <constraint firstItem="jZe-mX-eHE" firstAttribute="leading" secondItem="Duv-U4-VWJ" secondAttribute="leadingMargin" constant="-16" id="cZQ-qO-j6i"/>
+                            <constraint firstItem="yDa-wy-X80" firstAttribute="centerY" secondItem="P4A-6C-geb" secondAttribute="centerY" id="eaJ-ZZ-7wO"/>
                             <constraint firstItem="jZe-mX-eHE" firstAttribute="top" secondItem="Duv-U4-VWJ" secondAttribute="topMargin" id="fGr-7G-VCz"/>
                             <constraint firstItem="P4A-6C-geb" firstAttribute="bottom" secondItem="Eaf-32-whd" secondAttribute="bottom" constant="30" id="fSy-0e-abX"/>
                             <constraint firstItem="P4A-6C-geb" firstAttribute="trailing" secondItem="Eaf-32-whd" secondAttribute="trailing" constant="30" id="mBP-Qd-NZe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jZe-mX-eHE" secondAttribute="trailing" constant="-16" id="xgn-RO-hnr"/>
+                            <constraint firstItem="yDa-wy-X80" firstAttribute="centerX" secondItem="P4A-6C-geb" secondAttribute="centerX" id="yZR-gd-tsx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="P4A-6C-geb"/>
                     </view>
                     <navigationItem key="navigationItem" id="726-WR-ypM"/>
                     <connections>
                         <outlet property="mapView" destination="jZe-mX-eHE" id="Fae-4a-hMQ"/>
+                        <outlet property="spinner" destination="yDa-wy-X80" id="KDk-7m-yN0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ePC-2l-4wK" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1952" y="-336"/>
+            <point key="canvasLocation" x="2127" y="-348"/>
         </scene>
     </scenes>
     <resources>
