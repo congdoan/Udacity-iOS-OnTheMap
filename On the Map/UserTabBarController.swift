@@ -10,6 +10,13 @@ import UIKit
 
 class UserTabBarController: UITabBarController {
 
-    var userPins: [UserPin]!
+    var userPins = [UserPin]() {
+        didSet {
+            if let userListVC = childViewControllers[1].childViewControllers.first as? UserListViewController {
+                userListVC.hideDataFetchingIndicator()
+                userListVC.updateUI()
+            }
+        }
+    }
     
 }

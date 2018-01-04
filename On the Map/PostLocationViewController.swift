@@ -60,8 +60,11 @@ class PostLocationViewController: UIViewController {
                 self.showAlert(message: error.localizedDescription, alongsideUIAction: nil)
                 return
             }
-            self.showAutoCloseAlert(message: "User Location Posted/Updated!") {
+            let message = ParseClient.sharedInstance().objectIdOfUserLocation == nil ? "Your Location Posted!" : "Your Location Updated!"
+            self.showAutoCloseAlert(message: message) {
                 self.navigationController?.popToRootViewController(animated: true)
+                let tabItemViewController = (self.navigationController?.viewControllers.first as? TabItemViewController)
+                tabItemViewController?.fetchData()
             }
         }
     }

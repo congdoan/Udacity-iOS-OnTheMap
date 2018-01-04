@@ -34,6 +34,7 @@ class UserMapViewController: TabItemViewController {
     override func updateUI() {
         let annotations = pointAnnotationsFromUserPins((tabBarController as! UserTabBarController).userPins)
         DispatchQueue.main.async {
+            self.mapView.removeAnnotations(self.mapView.annotations)
             self.mapView.addAnnotations(annotations)
         }
     }

@@ -10,7 +10,7 @@ import UIKit
 
 class UserListViewController: TabItemViewController {
 
-    var userPins: [UserPin]!
+    var parentTabBarController: UserTabBarController!
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
@@ -20,10 +20,11 @@ class UserListViewController: TabItemViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        userPins = (tabBarController as! UserTabBarController).userPins
+        parentTabBarController = (tabBarController as! UserTabBarController)
         
-        //Fatal error: Unexpectedly found nil while unwrapping an Optional value WHEN NOT completing Fetch userPins
-        print(userPins.count)
+        if parentTabBarController.userPins.count == 0 {
+            showDataFetchingIndicator()
+        }
     }
 
     override func showDataFetchingIndicator() {
@@ -32,14 +33,17 @@ class UserListViewController: TabItemViewController {
     
     override func hideDataFetchingIndicator() {
         DispatchQueue.main.async {
-            self.spinner.stopAnimating()
+            if self.spinner != nil {
+                self.spinner.stopAnimating()
+            }
         }
     }
     
     override func updateUI() {
-        userPins = (tabBarController as! UserTabBarController).userPins
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+            if self.tableView != nil {
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -54,7 +58,7 @@ extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
         let cellReuseIdentifier = "UserTableViewCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell!
         
-        let userPin = userPins[indexPath.row]
+        let userPin = parentTabBarController.userPins[indexPath.row]
         cell?.textLabel!.text = userPin.name
         cell?.detailTextLabel?.text = userPin.mediaURL
         cell?.imageView!.image = #imageLiteral(resourceName: "icon_pin")
@@ -64,11 +68,11 @@ extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userPins.count
+        return parentTabBarController.userPins.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        checkOpenLink(userPins[indexPath.row].mediaURL)
+        checkOpenLink(parentTabBarController.userPins[indexPath.row].mediaURL)
     }
     
 }

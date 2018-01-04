@@ -22,13 +22,7 @@ struct UserPin {
         // Iterate through array of dictionaries, each UserPin is a dictionary
         let udacityAccoundId = UdacityClient.sharedInstance().userInfo.accountId
         let parseClient = ParseClient.sharedInstance()
-        var emptyNameCount = 0, myPostedLocationCount = 0
         for result in results {
-            if result[ParseClient.JSONResponseKeys.firstName] == nil || result[ParseClient.JSONResponseKeys.lastName] == nil {
-                emptyNameCount += 1
-                print(result)
-            }
-            
             if let lat = result[ParseClient.JSONResponseKeys.latitude] as? Double, let lon = result[ParseClient.JSONResponseKeys.longitude] as? Double {
                 let firstName = result[ParseClient.JSONResponseKeys.firstName]
                 let lastName = result[ParseClient.JSONResponseKeys.lastName]
@@ -39,15 +33,9 @@ struct UserPin {
                 
                 if let uniqueKey = result[ParseClient.JSONResponseKeys.uniqueKey] as? String, uniqueKey == udacityAccoundId {
                     parseClient.objectIdOfUserLocation = (result[ParseClient.JSONResponseKeys.objectId] as! String)
-                    myPostedLocationCount += 1
                 }
             }
         }
-        print("# of results  : \(results.count)")
-        print("# of userPins : \(userPins.count)")
-        print("emptyNameCount: \(emptyNameCount)")
-        print("myPostedLocationCount                 : \(myPostedLocationCount)")
-        print("objectIdOfStudentLocationOfCurrentUser: \(parseClient.objectIdOfUserLocation ?? "nil")")
 
         return userPins
     }

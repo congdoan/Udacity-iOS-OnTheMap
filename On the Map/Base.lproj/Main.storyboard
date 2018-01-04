@@ -369,8 +369,8 @@
                                     <action selector="finishButtonPressed:" destination="72v-gr-Xlc" eventType="touchUpInside" id="FQ2-aH-4VS"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="yDa-wy-X80">
-                                <rect key="frame" x="177" y="401" width="20" height="20"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="yDa-wy-X80">
+                                <rect key="frame" x="169" y="420.66666666666669" width="37" height="37"/>
                                 <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
@@ -379,7 +379,7 @@
                             <constraint firstItem="Eaf-32-whd" firstAttribute="leading" secondItem="P4A-6C-geb" secondAttribute="leading" constant="30" id="2J1-J0-qyu"/>
                             <constraint firstItem="oGo-Y9-ixv" firstAttribute="top" secondItem="jZe-mX-eHE" secondAttribute="bottom" id="H7B-4e-ELb"/>
                             <constraint firstItem="jZe-mX-eHE" firstAttribute="leading" secondItem="Duv-U4-VWJ" secondAttribute="leadingMargin" constant="-16" id="cZQ-qO-j6i"/>
-                            <constraint firstItem="yDa-wy-X80" firstAttribute="centerY" secondItem="P4A-6C-geb" secondAttribute="centerY" id="eaJ-ZZ-7wO"/>
+                            <constraint firstItem="yDa-wy-X80" firstAttribute="centerY" secondItem="P4A-6C-geb" secondAttribute="centerY" constant="28" id="eaJ-ZZ-7wO"/>
                             <constraint firstItem="jZe-mX-eHE" firstAttribute="top" secondItem="Duv-U4-VWJ" secondAttribute="topMargin" id="fGr-7G-VCz"/>
                             <constraint firstItem="P4A-6C-geb" firstAttribute="bottom" secondItem="Eaf-32-whd" secondAttribute="bottom" constant="30" id="fSy-0e-abX"/>
                             <constraint firstItem="P4A-6C-geb" firstAttribute="trailing" secondItem="Eaf-32-whd" secondAttribute="trailing" constant="30" id="mBP-Qd-NZe"/>

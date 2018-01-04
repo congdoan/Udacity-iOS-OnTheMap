@@ -27,7 +27,13 @@ class InputToPostLocationViewController: UIViewController {
     
     @IBAction func findLocationButtonPressed(_ sender: Any) {
         if validateInput() {
+            spinner.startAnimating()
+            
             geocodeLocationString(completionHandler: { (placemark) in
+                DispatchQueue.main.async {
+                    self.spinner.stopAnimating()
+                }
+                
                 if let placemark = placemark {
                     self.openMapForPlace(placemark)
                 } else {
