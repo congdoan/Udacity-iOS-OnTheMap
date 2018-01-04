@@ -22,6 +22,8 @@ class UserListViewController: TabItemViewController {
         tableView.dataSource = self
         parentTabBarController = (tabBarController as! UserTabBarController)
         
+        print("1. ", Date())
+        
         if parentTabBarController.userPins.count == 0 {
             showDataFetchingIndicator()
         }
@@ -33,6 +35,9 @@ class UserListViewController: TabItemViewController {
     
     override func hideDataFetchingIndicator() {
         DispatchQueue.main.async {
+            // This code will execute each time the fetching of student locations completes.
+            // And the first fetch probably finishs even before the View of this controller is loaded.
+            // Thus this check is necessary to avoid 'found nil while unwrapping optional' crash.
             if self.spinner != nil {
                 self.spinner.stopAnimating()
             }
@@ -41,6 +46,7 @@ class UserListViewController: TabItemViewController {
     
     override func updateUI() {
         DispatchQueue.main.async {
+            // With the same reason above this check is necessary to avoid 'found nil while unwrapping optional' crash.
             if self.tableView != nil {
                 self.tableView.reloadData()
             }

@@ -56,7 +56,6 @@ class TabItemViewController: UIViewController {
             
             if let userPins = userPins {
                 (self.tabBarController as! UserTabBarController).userPins = userPins
-                self.updateUI()
             } else if let error = error {
                 self.showAlert(message: error.localizedDescription, alongsideUIAction: nil)
             }
