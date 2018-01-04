@@ -78,6 +78,10 @@ extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if isNetworkDisconnected() {
+            return
+        }
+        
         checkOpenLink(parentTabBarController.userPins[indexPath.row].mediaURL)
     }
     

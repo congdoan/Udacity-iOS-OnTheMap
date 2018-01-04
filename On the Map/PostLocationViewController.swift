@@ -49,15 +49,21 @@ class PostLocationViewController: UIViewController {
     }
 
     @IBAction func finishButtonPressed(_ sender: Any) {
-        // POST or PUT UserLocation object to Parse
+        if isNetworkDisconnected() {
+            return
+        }
+        
+        // POST or PUT UserLocation object to Parse server
         spinner.startAnimating()
+        
         let location = prepareUserLocationObject()
         ParseClient.sharedInstance().postOrPutUserLocation(location) { (success, error) in
             DispatchQueue.main.async {
                 self.spinner.stopAnimating()
             }
+            
             if let error = error {
-                self.showAlert(message: error.localizedDescription, alongsideUIAction: nil)
+                self.showAlert(message: error.localizedDescription)
                 return
             }
             let message = ParseClient.sharedInstance().objectIdOfUserLocation == nil ? "Your Location Posted!" : "Your Location Updated!"

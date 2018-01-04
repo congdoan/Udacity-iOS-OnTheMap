@@ -45,8 +45,7 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func logInButtonPressed(sender: Any) {
-        if Reachability.isNotConnected() {
-            showAlert(message: "The Internet connection appears to be offline.", alongsideUIAction: nil)
+        if isNetworkDisconnected() {
             return
         }
         
@@ -59,27 +58,24 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
         let email = emailField.text!, password = passwordField.text!
         let udacityClient = UdacityClient.sharedInstance()
         udacityClient.authenticateUser(email: email, password: password) { (accountId, error) in
+            DispatchQueue.main.async {
+                self.spinner.stopAnimating()
+            }
+            
             if let error = error {
-                self.showAlertWithStopSpinner(message: error.localizedDescription)
+                self.showAlert(message: error.localizedDescription)
             } else {
                 udacityClient.getPublicUserInfo(accountId: accountId!)
-                self.showMainViewWithStopSpinner()
+                self.showMainView()
             }
         }
     }
     
-    private func showMainViewWithStopSpinner() {
+    // Present 'Map & List Tabbed View Controller'
+    private func showMainView() {
         let controller = storyboard!.instantiateViewController(withIdentifier: "MapListTabBarController")
         DispatchQueue.main.async {
-            self.spinner.stopAnimating()
-            // Present 'Map & List Tabbed View Controller'
             self.present(controller, animated: true, completion: nil)
-        }
-    }
-    
-    private func showAlertWithStopSpinner(message: String) {
-        showAlert(message: message) {
-            self.spinner.stopAnimating()
         }
     }
     
@@ -102,8 +98,7 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
     
     @objc func signUpLinkTapped(gesture: UITapGestureRecognizer) {
         if gesture.didTapAttributedTextInLabel(signUpLabel, inRange: signUpLinkRange) {
-            if Reachability.isNotConnected() {
-                showAlert(message: "The Internet connection appears to be offline.", alongsideUIAction: nil)
+            if isNetworkDisconnected() {
                 return
             }
             

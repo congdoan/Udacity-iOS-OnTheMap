@@ -26,7 +26,7 @@ class InputToPostLocationViewController: UIViewController {
     }
     
     @IBAction func findLocationButtonPressed(_ sender: Any) {
-        if validateInput() {
+        if validateInput() && !isNetworkDisconnected() {
             spinner.startAnimating()
             
             geocodeLocationString(completionHandler: { (placemark) in
@@ -37,7 +37,7 @@ class InputToPostLocationViewController: UIViewController {
                 if let placemark = placemark {
                     self.openMapForPlace(placemark)
                 } else {
-                    self.showAlert(message: "Could Not Geocode the Location String.", alongsideUIAction: nil)
+                    self.showAlert(message: "Could Not Geocode the Location String.")
                 }
             })
         }
@@ -52,11 +52,11 @@ class InputToPostLocationViewController: UIViewController {
     
     private func validateInput() -> Bool {
         if locationField.text! == "" || websiteField.text! == "" {
-            showAlert(message: "Empty Location or Link.", alongsideUIAction: nil)
+            showAlert(message: "Empty Location or Link.")
             return false
         }
         if !isWebUrlValid(websiteField.text) {
-            showAlert(message: "Invalid Link. It must start with 'http(s)://'.", alongsideUIAction: nil)
+            showAlert(message: "Invalid Link. It must start with 'http(s)://'.")
             return false
         }
         return true

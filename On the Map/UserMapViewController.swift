@@ -80,6 +80,10 @@ extension UserMapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
+            if isNetworkDisconnected() {
+                return
+            }
+            
             checkOpenLink(view.annotation?.subtitle!)
         }
     }

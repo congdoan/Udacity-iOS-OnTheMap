@@ -31,6 +31,10 @@ class TabItemViewController: UIViewController {
     }
     
     @objc func showPostLocationVC() {
+        if isNetworkDisconnected() {
+            return
+        }
+        
         if ParseClient.sharedInstance().objectIdOfUserLocation != nil {
             let message = "You have already posted a Student Location. Would you like to Overwrite it"
             let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
@@ -49,6 +53,10 @@ class TabItemViewController: UIViewController {
     }
     
     @objc func fetchData() {
+        if isNetworkDisconnected() {
+            return
+        }
+        
         showDataFetchingIndicator()
         
         ParseClient.sharedInstance().getUserPins { (userPins, error) in
@@ -57,7 +65,7 @@ class TabItemViewController: UIViewController {
             if let userPins = userPins {
                 (self.tabBarController as! UserTabBarController).userPins = userPins
             } else if let error = error {
-                self.showAlert(message: error.localizedDescription, alongsideUIAction: nil)
+                self.showAlert(message: error.localizedDescription)
             }
         }
     }
