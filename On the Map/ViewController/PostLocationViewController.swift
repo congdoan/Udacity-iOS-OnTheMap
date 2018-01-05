@@ -9,7 +9,6 @@
 import UIKit
 import MapKit
 
-
 class PostLocationViewController: UIViewController {
     
     var placemark: CLPlacemark!

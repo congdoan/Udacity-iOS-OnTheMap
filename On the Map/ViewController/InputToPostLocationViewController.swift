@@ -9,7 +9,6 @@
 import UIKit
 import MapKit
 
-
 class InputToPostLocationViewController: UIViewController {
 
     @IBOutlet weak var locationField: UITextField!

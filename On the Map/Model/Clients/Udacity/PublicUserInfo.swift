@@ -6,7 +6,6 @@
 //  Copyright © 2018 Cong Doan. All rights reserved.
 //
 
-
 struct PublicUserInfo {
     let accountId: String
     let firstName: String?

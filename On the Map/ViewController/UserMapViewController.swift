@@ -9,7 +9,6 @@
 import UIKit
 import MapKit
 
-
 class UserMapViewController: TabItemViewController {
     
     @IBOutlet weak var mapView: MKMapView!

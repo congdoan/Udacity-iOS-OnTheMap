@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 extension ParseClient {
     
     static let BASE_API_URL = "https://parse.udacity.com/parse/classes/StudentLocation"

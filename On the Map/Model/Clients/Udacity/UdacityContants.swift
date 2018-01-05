@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 extension UdacityClient {
     
     static let BASE_API_URL = URL(string: "https://www.udacity.com/api")!

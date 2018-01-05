@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class UdacityClient: NSObject {
     
     var userInfo: PublicUserInfo!

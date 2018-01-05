@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct UserLocation {
     
     let uniqueKey: String
