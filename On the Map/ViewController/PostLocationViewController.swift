@@ -66,6 +66,7 @@ class PostLocationViewController: UIViewController {
                 self.showAlert(message: error.localizedDescription)
                 return
             }
+            
             let message = ParseClient.sharedInstance().objectIdOfUserLocation == nil ? "Your Location Posted!" : "Your Location Updated!"
             self.showAutoCloseAlert(message: message) {
                 self.navigationController?.popToRootViewController(animated: true)

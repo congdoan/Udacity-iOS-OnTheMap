@@ -57,7 +57,7 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
         
         let email = emailField.text!, password = passwordField.text!
         let udacityClient = UdacityClient.sharedInstance()
-        udacityClient.authenticateUser(email: email, password: password) { (accountId, error, _) in
+        udacityClient.authenticateUser(email: email, password: password) { (accountId, error) in
             DispatchQueue.main.async {
                 self.spinner.stopAnimating()
             }
@@ -67,7 +67,7 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
             } else {
                 let userAccountId = accountId! as! String
                 udacityClient.userInfo = PublicUserInfo(accountId: userAccountId, firstName: nil, lastName: nil)
-                udacityClient.getPublicUserInfo(accountId: userAccountId) { (userInfo, error, _) in
+                udacityClient.getPublicUserInfo(accountId: userAccountId) { (userInfo, error) in
                     if let error = error {
                         self.showAlert(message: error.localizedDescription)
                     } else {

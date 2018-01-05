@@ -62,11 +62,12 @@ class TabItemViewController: UIViewController {
         ParseClient.sharedInstance().getUserPins { (userPins, error) in
             self.hideDataFetchingIndicator()
             
-            if let userPins = userPins {
-                (self.tabBarController as! UserTabBarController).userPins = userPins
-            } else if let error = error {
+            if let error = error {
                 self.showAlert(message: error.localizedDescription)
+                return
             }
+            
+            (self.tabBarController as! UserTabBarController).userPins = (userPins as! [UserPin])
         }
     }
     

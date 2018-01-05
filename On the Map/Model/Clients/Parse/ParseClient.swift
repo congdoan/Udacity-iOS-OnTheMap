@@ -12,94 +12,58 @@ class ParseClient: NSObject {
     
     var objectIdOfUserLocation: String?
 
-    // Parse API: GET Student Locations
-    func getUserPins(completionHandler: @escaping (_ results: [UserPin]?, _ error: Error?) -> Void) {
-        let urlString = "https://parse.udacity.com/parse/classes/StudentLocation", url = URL(string: urlString)!
+    private func buildRequest(url: URL) -> URLRequest {
         var request = URLRequest(url: url)
-        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            func sendError(_ errorDescription: String) {
-                let userInfo = [NSLocalizedDescriptionKey : errorDescription]
-                completionHandler(nil, NSError(domain: "ParseClient.getUserPins", code: 1, userInfo: userInfo))
-            }
-            
+        request.addValue(HeaderFields.appId.value, forHTTPHeaderField: HeaderFields.appId.name)
+        request.addValue(HeaderFields.apiKey.value, forHTTPHeaderField: HeaderFields.apiKey.name)
+        return request
+    }
+    
+    // Parse API: GET 100 Most Recently Updated Student Locations
+    func getUserPins(completionHandler: @escaping (_ userPins: AnyObject?, _ error: Error?) -> Void) {
+        let request = buildRequest(url: URL(string: ParseClient.BASE_API_URL + "?limit=100&order=-updatedAt")!)
+        startTaskForRequest(request) { (resultDictionary, error) in
+            let domain = "ParseClient.getUserPins"
             if let error = error {
-                completionHandler(nil, error)
+                sendError(error.localizedDescription, domain, completionHandler)
                 return
             }
             
-            guard let data = data else {
-                sendError("No data was returned by the request.")
-                return
-            }
-            
-            if let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode < 200 || statusCode > 299 {
-                let dataString: String = String(data: data, encoding: .utf8)!
-                let errormessage = "HTTP Status Code \(statusCode).\n\(dataString)"
-                sendError(errormessage)
-                return
-            }
-            
-            do {
-                let parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String : Any]
-                if let results = parsedResult[JSONResponseKeys.results] as? [[String:Any]] {
-                    let userPins = UserPin.userPinsFromResults(results)
-                    completionHandler(userPins, nil)
-                } else {
-                    let errormessage = "Could not parse the below dictionary using the key '\(JSONResponseKeys.results)':\n\(parsedResult)"
-                    sendError(errormessage)
-                }
-            } catch {
-                let dataString: String = String(data: data, encoding: .utf8)!
-                let errormessage = "Could not parse the below data as JSON:\n\(dataString)"
-                sendError(errormessage)
+            // Extract a list of UserPin objects
+            let result = resultDictionary!
+            if let studentLocations = result[JSONResponseKeys.results] as? [[String:Any]] {
+                let userPins = UserPin.userPinsFromResults(studentLocations)
+                completionHandler(userPins as AnyObject, nil)
+            } else {
+                let errormessage = "Could not parse the below dictionary using the key '\(JSONResponseKeys.results)':\n\(result)"
+                sendError(errormessage, domain, completionHandler)
             }
         }
-        task.resume()
     }
     
     // Parse API: POST or PUT a Student Location
-    func postOrPutUserLocation(_ location: UserLocation, completionHandler: @escaping (_ success: Bool, _ error: Error?) -> Void) {
-        var url = URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!
+    func postOrPutUserLocation(_ location: UserLocation,
+                               completionHandler: @escaping (_ success: AnyObject?, _ error: Error?) -> Void) {
+        var url = URL(string: ParseClient.BASE_API_URL)!
         var httpMethod = "POST"
         if let objectId = objectIdOfUserLocation {
             url.appendPathComponent(objectId)
             httpMethod = "PUT"
         }
-        var request = URLRequest(url: url)
+        var request = buildRequest(url: url)
         request.httpMethod = httpMethod
-        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(HeaderFields.contentType.value, forHTTPHeaderField: HeaderFields.contentType.name)
         request.httpBody = location.jsonData
-        let session = URLSession.shared
-        let task = session.dataTask(with: request) { (data, response, error) in
-            func sendError(_ errorDescription: String) {
-                let userInfo = [NSLocalizedDescriptionKey : errorDescription]
-                completionHandler(false, NSError(domain: "ParseClient.postOrPutUserLocation", code: 1, userInfo: userInfo))
-            }
-            
+        startTaskForRequest(request) { (resultDictionary, error) in
             if let error = error {
-                completionHandler(false, error)
+                let domain = "ParseClient.postOrPutUserLocation"
+                sendError(error.localizedDescription, domain, completionHandler)
                 return
             }
             
-            guard let data = data else {
-                sendError("No data was returned by the request.")
-                return
-            }
-            
-            if let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode < 200 || statusCode > 299 {
-                let dataString: String = String(data: data, encoding: .utf8)!
-                let errormessage = "HTTP Status Code \(statusCode).\n\(dataString)"
-                sendError(errormessage)
-                return
-            }
-            
-            completionHandler(true, nil)
+            // POST or PUT Success
+            completionHandler(true as AnyObject, nil)
         }
-        task.resume()
     }
     
     // MARK: Shared Instance

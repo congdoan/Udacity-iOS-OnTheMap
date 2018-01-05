@@ -27,6 +27,7 @@
 		F4CD2CDB1FFD25BA002F7791 /* PublicUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD2CDA1FFD25BA002F7791 /* PublicUserInfo.swift */; };
 		F4CD2CDD1FFD2713002F7791 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD2CDC1FFD2713002F7791 /* UserLocation.swift */; };
 		F4E2111C1FFBCE1400728A32 /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2111B1FFBCE1400728A32 /* UserLoginViewController.swift */; };
+		F4E519161FFF13E700E4C88B /* CommonClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E519151FFF13E700E4C88B /* CommonClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		F4CD2CDA1FFD25BA002F7791 /* PublicUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicUserInfo.swift; sourceTree = "<group>"; };
 		F4CD2CDC1FFD2713002F7791 /* UserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		F4E2111B1FFBCE1400728A32 /* UserLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
+		F4E519151FFF13E700E4C88B /* CommonClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		F4B768821FFB72DD00A78A98 /* Clients */ = {
 			isa = PBXGroup;
 			children = (
+				F4E519151FFF13E700E4C88B /* CommonClient.swift */,
 				F4CD2CD51FFCF35E002F7791 /* Udacity */,
 				F4B768841FFB733600A78A98 /* Parse */,
 			);
@@ -228,6 +231,7 @@
 				F4A3A18D1FFC95EB00EE172D /* TabItemViewController.swift in Sources */,
 				F4CD2CDD1FFD2713002F7791 /* UserLocation.swift in Sources */,
 				F4B768881FFB7AC200A78A98 /* ParseClient.swift in Sources */,
+				F4E519161FFF13E700E4C88B /* CommonClient.swift in Sources */,
 				F4225E761FF9D5CE006F4AB9 /* AppDelegate.swift in Sources */,
 				F4C4AC541FFB0A4C00FD29F0 /* Reachability.swift in Sources */,
 				F43446661FFBB93800F8969A /* UserListViewController.swift in Sources */,
