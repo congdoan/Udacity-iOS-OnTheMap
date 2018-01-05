@@ -42,9 +42,14 @@ class PostLocationViewController: UIViewController {
         }
         mapString = addressComponents.joined(separator: ", ")
         annotation.title = mapString
-        annotation.coordinate = placemark.location!.coordinate
-        mapView.centerCoordinate = annotation.coordinate
+        let coordinate = placemark.location!.coordinate
+        annotation.coordinate = coordinate
         mapView.addAnnotation(annotation)
+        // Center the map on the user's coordinate
+        mapView.centerCoordinate = coordinate
+        let regionRadius: CLLocationDistance = 1000
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(coordinate, regionRadius, regionRadius)
+        mapView.setRegion(coordinateRegion, animated: true)
     }
 
     @IBAction func finishButtonPressed(_ sender: Any) {
