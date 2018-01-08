@@ -10,8 +10,6 @@ import UIKit
 
 class UserListViewController: TabItemViewController {
 
-    var parentTabBarController: UserTabBarController!
-
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
@@ -20,11 +18,8 @@ class UserListViewController: TabItemViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        parentTabBarController = (tabBarController as! UserTabBarController)
         
-        print("1. ", Date())
-        
-        if parentTabBarController.userPins.count == 0 {
+        if AppData.shared.userPins.count == 0 {
             showDataFetchingIndicator()
         }
     }
@@ -64,7 +59,7 @@ extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
         let cellReuseIdentifier = "UserTableViewCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell!
         
-        let userPin = parentTabBarController.userPins[indexPath.row]
+        let userPin = AppData.shared.userPins[indexPath.row]
         cell?.textLabel!.text = userPin.name
         cell?.detailTextLabel?.text = userPin.mediaURL
         cell?.imageView!.image = #imageLiteral(resourceName: "icon_pin")
@@ -74,7 +69,7 @@ extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return parentTabBarController.userPins.count
+        return AppData.shared.userPins.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -82,7 +77,7 @@ extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
             return
         }
         
-        checkOpenLink(parentTabBarController.userPins[indexPath.row].mediaURL)
+        checkOpenLink(AppData.shared.userPins[indexPath.row].mediaURL)
     }
     
 }

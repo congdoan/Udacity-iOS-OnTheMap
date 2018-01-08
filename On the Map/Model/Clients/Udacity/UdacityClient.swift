@@ -8,9 +8,7 @@
 
 import UIKit
 
-class UdacityClient: NSObject {
-    
-    var userInfo: PublicUserInfo!
+class UdacityClient {
     
     func authenticateUser(email: String, password: String,
                           completionHandler: @escaping (_ accountId: AnyObject?, _ error: Error?) -> Void) {
@@ -31,8 +29,9 @@ class UdacityClient: NSObject {
                 return
             }
             
-            // Extract the User's Udacity Account ID
+            /* Extract the User's Udacity Account ID */
             let result = resultDictionary!
+            //print("Login's Result: \(result)\n****************************************************")
             if let account = result[JSONResponseKeys.account] as? [String:Any] {
                 if let accountId = account[JSONResponseKeys.accountId] as? String {
                     completionHandler(accountId as AnyObject, nil)
@@ -57,7 +56,7 @@ class UdacityClient: NSObject {
                 return
             }
             
-            // Extract the User's First and Last Names
+            /* Extract the User's First and Last Names */
             let result = resultDictionary!
             if let user = result[JSONResponseKeys.user] as? [String:Any] {
                 let firstName = user[JSONResponseKeys.first_name] as? String
@@ -71,14 +70,36 @@ class UdacityClient: NSObject {
             }
         }
     }
-    
+
+    func logout(completionHandler: @escaping (_ success: AnyObject?, _ error: Error?) -> Void) {
+        var request = URLRequest(url: UdacityClient.BASE_API_URL.appendingPathComponent("session"))
+        request.httpMethod = "DELETE"
+        var xsrfCookie: HTTPCookie? = nil
+        for cookie in HTTPCookieStorage.shared.cookies! {
+            if cookie.name == "XSRF-TOKEN" {
+                xsrfCookie = cookie
+            }
+        }
+        if let xsrfCookie = xsrfCookie {
+            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+            //print("X-XSRF-TOKEN: \(request.value(forHTTPHeaderField: "X-XSRF-TOKEN")!)\n****************************************************")
+        }
+        
+        startTaskForRequest(request, requestToUdacityApi: true) { (resultDictionary, error) in
+            let domain = "UdacityClient.logout"
+            if let error = error {
+                sendError(error.localizedDescription, domain, completionHandler)
+                return
+            }
+            
+            //print("Logout's Result: \(resultDictionary!)")
+            let successfulDeletingTheSession = true
+            completionHandler(successfulDeletingTheSession as AnyObject, nil)
+        }
+    }
+
     // MARK: Shared Instance
     
-    class func sharedInstance() -> UdacityClient {
-        struct Singleton {
-            static var sharedInstance = UdacityClient()
-        }
-        return Singleton.sharedInstance
-    }
+    static let shared = UdacityClient()
     
 }

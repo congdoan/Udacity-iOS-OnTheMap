@@ -10,13 +10,10 @@ import UIKit
 
 class UserTabBarController: UITabBarController {
 
+    /*
     var userPins = [UserPin]() {
         didSet {
             for navigationController in viewControllers! {
-                print(type(of: navigationController))
-                for vc in navigationController.childViewControllers {
-                    print(type(of: vc))
-                }
                 if let tabItemViewController = navigationController.childViewControllers.first as? TabItemViewController {
                     tabItemViewController.hideDataFetchingIndicator()
                     tabItemViewController.updateUI()
@@ -24,5 +21,6 @@ class UserTabBarController: UITabBarController {
             }
         }
     }
+    */
     
 }

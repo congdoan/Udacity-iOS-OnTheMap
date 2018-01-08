@@ -14,7 +14,7 @@ class TabItemViewController: UIViewController {
         super.viewDidLoad()
 
         navigationItem.title = "On the Map"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "LOGOUT", style: .plain, target: self, action: #selector(dismissTarBarController))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "LOGOUT", style: .plain, target: self, action: #selector(logout))
         let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showPostLocationVC))
         let refreshItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(fetchData))
         navigationItem.rightBarButtonItems = [addItem, refreshItem]
@@ -26,8 +26,17 @@ class TabItemViewController: UIViewController {
         setTabBarVisibility(true)
     }
     
-    @objc func dismissTarBarController() {
-        tabBarController?.dismiss(animated: true, completion: nil)
+    @objc func logout() {
+        UdacityClient.shared.logout() { (_, error) in
+            if let error = error {
+                self.showAlert(message: error.localizedDescription)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.tabBarController?.dismiss(animated: true, completion: nil)
+            }
+        }
     }
     
     @objc func showPostLocationVC() {
@@ -35,7 +44,7 @@ class TabItemViewController: UIViewController {
             return
         }
         
-        if ParseClient.sharedInstance().objectIdOfUserLocation != nil {
+        if AppData.shared.objectIdOfUserLocation != nil {
             let message = "You have already posted a Student Location. Would you like to Overwrite it"
             let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             let actionOverwrite = UIAlertAction(title: "Overwrite", style: .default) { (_) in
@@ -59,7 +68,7 @@ class TabItemViewController: UIViewController {
         
         showDataFetchingIndicator()
         
-        ParseClient.sharedInstance().getUserPins { (userPins, error) in
+        ParseClient.shared.getUserPins { (userPins, error) in
             self.hideDataFetchingIndicator()
             
             if let error = error {
@@ -67,7 +76,9 @@ class TabItemViewController: UIViewController {
                 return
             }
             
-            (self.tabBarController as! UserTabBarController).userPins = (userPins as! [UserPin])
+            let navigationControllers = (self.tabBarController as! UserTabBarController).viewControllers!
+            let tabItemViewControllers = navigationControllers.map {$0.childViewControllers.first as! TabItemViewController}
+            AppData.shared.setUserPins(userPins as! [UserPin], observers: tabItemViewControllers)
         }
     }
     

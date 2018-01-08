@@ -15,24 +15,31 @@ struct UserPin {
     let latitude: Double
     let longitude: Double
     
+    init?(_ result: [String:Any]) {
+        if let lat = result[ParseClient.JSONResponseKeys.latitude] as? Double, let lon = result[ParseClient.JSONResponseKeys.longitude] as? Double {
+            let firstName = result[ParseClient.JSONResponseKeys.firstName]
+            let lastName = result[ParseClient.JSONResponseKeys.lastName]
+            name = "\(firstName ?? "No First Name") \(lastName ?? "No Last Name")"
+            mediaURL = "\(result[ParseClient.JSONResponseKeys.mediaURL] ?? "No Media URL")"
+            latitude = lat
+            longitude = lon
+        } else {
+            return nil
+        }
+    }
+    
     
     static func userPinsFromResults(_ results: [[String:Any]]) -> [UserPin] {
         var userPins = [UserPin]()
         
         // Iterate through array of dictionaries, each UserPin is a dictionary
-        let udacityAccoundId = UdacityClient.sharedInstance().userInfo.accountId
-        let parseClient = ParseClient.sharedInstance()
+        let udacityAccoundId = AppData.shared.userInfo.accountId
         for result in results {
-            if let lat = result[ParseClient.JSONResponseKeys.latitude] as? Double, let lon = result[ParseClient.JSONResponseKeys.longitude] as? Double {
-                let firstName = result[ParseClient.JSONResponseKeys.firstName]
-                let lastName = result[ParseClient.JSONResponseKeys.lastName]
-                let name = "\(firstName ?? "No First Name") \(lastName ?? "No Last Name")"
-                let mediaURL = "\(result[ParseClient.JSONResponseKeys.mediaURL] ?? "No Media URL")"
-                let userPin = UserPin(name: name, mediaURL: mediaURL, latitude: lat, longitude: lon)
+            if let userPin = UserPin(result) {
                 userPins.append(userPin)
                 
                 if let uniqueKey = result[ParseClient.JSONResponseKeys.uniqueKey] as? String, uniqueKey == udacityAccoundId {
-                    parseClient.objectIdOfUserLocation = (result[ParseClient.JSONResponseKeys.objectId] as! String)
+                    AppData.shared.objectIdOfUserLocation = (result[ParseClient.JSONResponseKeys.objectId] as! String)
                 }
             }
         }

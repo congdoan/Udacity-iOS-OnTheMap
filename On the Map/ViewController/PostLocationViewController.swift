@@ -61,7 +61,7 @@ class PostLocationViewController: UIViewController {
         spinner.startAnimating()
         
         let location = prepareUserLocationObject()
-        ParseClient.sharedInstance().postOrPutUserLocation(location) { (success, error) in
+        ParseClient.shared.postOrPutUserLocation(location) { (success, error) in
             DispatchQueue.main.async {
                 self.spinner.stopAnimating()
             }
@@ -71,7 +71,7 @@ class PostLocationViewController: UIViewController {
                 return
             }
             
-            let message = ParseClient.sharedInstance().objectIdOfUserLocation == nil ? "Your Location Posted!" : "Your Location Updated!"
+            let message = AppData.shared.objectIdOfUserLocation == nil ? "Your Location Posted!" : "Your Location Updated!"
             self.showAutoCloseAlert(message: message) {
                 self.navigationController?.popToRootViewController(animated: true)
                 let tabItemViewController = (self.navigationController?.viewControllers.first as? TabItemViewController)
@@ -86,7 +86,7 @@ class PostLocationViewController: UIViewController {
             self.present(alert, animated: true)
             
             // duration in seconds
-            let duration: Double = 1
+            let duration: Double = 0.80
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + duration) {
                 alert.dismiss(animated: true)
                 onCloseHandler()
@@ -95,7 +95,7 @@ class PostLocationViewController: UIViewController {
     }
     
     private func prepareUserLocationObject() -> UserLocation {
-        let userInfo = UdacityClient.sharedInstance().userInfo!
+        let userInfo = AppData.shared.userInfo!
         let coordinate = placemark.location!.coordinate
         let location = UserLocation(uniqueKey: userInfo.accountId,
                                     firstName: userInfo.firstName, lastName: userInfo.lastName,

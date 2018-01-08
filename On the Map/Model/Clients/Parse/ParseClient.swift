@@ -8,9 +8,11 @@
 
 import UIKit
 
-class ParseClient: NSObject {
+class ParseClient {
     
-    var objectIdOfUserLocation: String?
+    // MARK: Shared Instance
+    
+    static let shared = ParseClient()
 
     private func buildRequest(url: URL) -> URLRequest {
         var request = URLRequest(url: url)
@@ -46,7 +48,7 @@ class ParseClient: NSObject {
                                completionHandler: @escaping (_ success: AnyObject?, _ error: Error?) -> Void) {
         var url = URL(string: ParseClient.BASE_API_URL)!
         var httpMethod = "POST"
-        if let objectId = objectIdOfUserLocation {
+        if let objectId = AppData.shared.objectIdOfUserLocation {
             url.appendPathComponent(objectId)
             httpMethod = "PUT"
         }
@@ -64,15 +66,6 @@ class ParseClient: NSObject {
             // POST or PUT Success
             completionHandler(true as AnyObject, nil)
         }
-    }
-    
-    // MARK: Shared Instance
-    
-    class func sharedInstance() -> ParseClient {
-        struct Singleton {
-            static var sharedInstance = ParseClient()
-        }
-        return Singleton.sharedInstance
     }
 
 }

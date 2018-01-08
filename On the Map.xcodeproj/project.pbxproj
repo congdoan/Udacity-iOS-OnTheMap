@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F416802E20030EF300693BEB /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F416802D20030EF300693BEB /* AppData.swift */; };
 		F4225E761FF9D5CE006F4AB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4225E751FF9D5CE006F4AB9 /* AppDelegate.swift */; };
 		F4225E7B1FF9D5CE006F4AB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4225E791FF9D5CE006F4AB9 /* Main.storyboard */; };
 		F4225E7D1FF9D5CE006F4AB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4225E7C1FF9D5CE006F4AB9 /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F416802D20030EF300693BEB /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		F4225E721FF9D5CE006F4AB9 /* On the Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On the Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4225E751FF9D5CE006F4AB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4225E7A1FF9D5CE006F4AB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				F4B768821FFB72DD00A78A98 /* Clients */,
+				F416802D20030EF300693BEB /* AppData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				F4CAC4681FFC5E6200BEDB50 /* UIViewController+extentions.swift in Sources */,
 				F4E2111C1FFBCE1400728A32 /* UserLoginViewController.swift in Sources */,
 				F4A3A18D1FFC95EB00EE172D /* TabItemViewController.swift in Sources */,
+				F416802E20030EF300693BEB /* AppData.swift in Sources */,
 				F4CD2CDD1FFD2713002F7791 /* UserLocation.swift in Sources */,
 				F4B768881FFB7AC200A78A98 /* ParseClient.swift in Sources */,
 				F4E519161FFF13E700E4C88B /* CommonClient.swift in Sources */,
