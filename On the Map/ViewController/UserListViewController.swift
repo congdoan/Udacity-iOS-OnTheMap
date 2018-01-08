@@ -19,7 +19,7 @@ class UserListViewController: TabItemViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        if AppData.shared.userPins.count == 0 {
+        if StudentInformation.studentInfos.count == 0 {
             showDataFetchingIndicator()
         }
     }
@@ -59,7 +59,7 @@ extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
         let cellReuseIdentifier = "UserTableViewCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell!
         
-        let userPin = AppData.shared.userPins[indexPath.row]
+        let userPin = StudentInformation.studentInfos[indexPath.row]
         cell?.textLabel!.text = userPin.name
         cell?.detailTextLabel?.text = userPin.mediaURL
         cell?.imageView!.image = #imageLiteral(resourceName: "icon_pin")
@@ -69,7 +69,7 @@ extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return AppData.shared.userPins.count
+        return StudentInformation.studentInfos.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -77,7 +77,7 @@ extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
             return
         }
         
-        checkOpenLink(AppData.shared.userPins[indexPath.row].mediaURL)
+        checkOpenLink(StudentInformation.studentInfos[indexPath.row].mediaURL)
     }
     
 }

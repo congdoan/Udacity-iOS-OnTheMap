@@ -44,7 +44,7 @@ class TabItemViewController: UIViewController {
             return
         }
         
-        if AppData.shared.objectIdOfUserLocation != nil {
+        if ParseClient.shared.objectIdOfStudentLocation != nil {
             let message = "You have already posted a Student Location. Would you like to Overwrite it"
             let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             let actionOverwrite = UIAlertAction(title: "Overwrite", style: .default) { (_) in
@@ -76,9 +76,9 @@ class TabItemViewController: UIViewController {
                 return
             }
             
-            let navigationControllers = (self.tabBarController as! UserTabBarController).viewControllers!
+            let navigationControllers = self.tabBarController!.viewControllers!
             let tabItemViewControllers = navigationControllers.map {$0.childViewControllers.first as! TabItemViewController}
-            AppData.shared.setUserPins(userPins as! [UserPin], observers: tabItemViewControllers)
+            StudentInformation.setStudentInfos(userPins as! [StudentInformation], observers: tabItemViewControllers)
         }
     }
     

@@ -66,12 +66,12 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
                 self.showAlert(message: error.localizedDescription)
             } else {
                 let userAccountId = accountId! as! String
-                AppData.shared.userInfo = PublicUserInfo(accountId: userAccountId, firstName: nil, lastName: nil)
+                UdacityClient.shared.userInfo = PublicUserInfo(accountId: userAccountId, firstName: nil, lastName: nil)
                 udacityClient.getPublicUserInfo(accountId: userAccountId) { (userInfo, error) in
                     if let error = error {
                         self.showAlert(message: error.localizedDescription)
                     } else {
-                        AppData.shared.userInfo = userInfo as! PublicUserInfo
+                        UdacityClient.shared.userInfo = userInfo as! PublicUserInfo
                     }
                 }
                 self.showMainView()

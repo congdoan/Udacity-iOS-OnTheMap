@@ -14,6 +14,8 @@ class ParseClient {
     
     static let shared = ParseClient()
 
+    var objectIdOfStudentLocation: String?
+    
     private func buildRequest(url: URL) -> URLRequest {
         var request = URLRequest(url: url)
         request.addValue(HeaderFields.appId.value, forHTTPHeaderField: HeaderFields.appId.name)
@@ -34,7 +36,7 @@ class ParseClient {
             // Extract a list of UserPin objects
             let result = resultDictionary!
             if let studentLocations = result[JSONResponseKeys.results] as? [[String:Any]] {
-                let userPins = UserPin.userPinsFromResults(studentLocations)
+                let userPins = StudentInformation.studentInformationsFromResults(studentLocations)
                 completionHandler(userPins as AnyObject, nil)
             } else {
                 let errormessage = "Could not parse the below dictionary using the key '\(JSONResponseKeys.results)':\n\(result)"
@@ -44,11 +46,11 @@ class ParseClient {
     }
     
     // Parse API: POST or PUT a Student Location
-    func postOrPutUserLocation(_ location: UserLocation,
+    func postOrPutUserLocation(_ location: StudentLocation,
                                completionHandler: @escaping (_ success: AnyObject?, _ error: Error?) -> Void) {
         var url = URL(string: ParseClient.BASE_API_URL)!
         var httpMethod = "POST"
-        if let objectId = AppData.shared.objectIdOfUserLocation {
+        if let objectId = ParseClient.shared.objectIdOfStudentLocation {
             url.appendPathComponent(objectId)
             httpMethod = "PUT"
         }

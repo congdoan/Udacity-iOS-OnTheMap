@@ -31,14 +31,14 @@ class UserMapViewController: TabItemViewController {
     }
     
     override func updateUI() {
-        let annotations = pointAnnotationsFromUserPins(AppData.shared.userPins)
+        let annotations = pointAnnotationsFromUserPins(StudentInformation.studentInfos)
         DispatchQueue.main.async {
             self.mapView.removeAnnotations(self.mapView.annotations)
             self.mapView.addAnnotations(annotations)
         }
     }
     
-    private func pointAnnotationsFromUserPins(_ userPins: [UserPin]) -> [MKPointAnnotation] {
+    private func pointAnnotationsFromUserPins(_ userPins: [StudentInformation]) -> [MKPointAnnotation] {
         var annotations = [MKPointAnnotation]()
         for userPin in userPins {
             let annotation = MKPointAnnotation()

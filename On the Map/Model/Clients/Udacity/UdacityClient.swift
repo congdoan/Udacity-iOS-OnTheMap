@@ -9,6 +9,12 @@
 import UIKit
 
 class UdacityClient {
+
+    // MARK: Shared Instance
+    
+    static let shared = UdacityClient()
+
+    var userInfo: PublicUserInfo!
     
     func authenticateUser(email: String, password: String,
                           completionHandler: @escaping (_ accountId: AnyObject?, _ error: Error?) -> Void) {
@@ -97,9 +103,5 @@ class UdacityClient {
             completionHandler(successfulDeletingTheSession as AnyObject, nil)
         }
     }
-
-    // MARK: Shared Instance
-    
-    static let shared = UdacityClient()
     
 }

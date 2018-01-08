@@ -7,18 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F416802E20030EF300693BEB /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F416802D20030EF300693BEB /* AppData.swift */; };
 		F4225E761FF9D5CE006F4AB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4225E751FF9D5CE006F4AB9 /* AppDelegate.swift */; };
 		F4225E7B1FF9D5CE006F4AB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4225E791FF9D5CE006F4AB9 /* Main.storyboard */; };
 		F4225E7D1FF9D5CE006F4AB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4225E7C1FF9D5CE006F4AB9 /* Assets.xcassets */; };
 		F4225E801FF9D5CE006F4AB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4225E7E1FF9D5CE006F4AB9 /* LaunchScreen.storyboard */; };
 		F43446661FFBB93800F8969A /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43446651FFBB93800F8969A /* UserListViewController.swift */; };
-		F43446681FFBBB0100F8969A /* UserTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43446671FFBBB0100F8969A /* UserTabBarController.swift */; };
 		F43C2CC01FFB47CE000BDB1A /* UserMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43C2CBF1FFB47CE000BDB1A /* UserMapViewController.swift */; };
 		F4A3A18B1FFC865A00EE172D /* InputToPostLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3A18A1FFC865A00EE172D /* InputToPostLocationViewController.swift */; };
 		F4A3A18D1FFC95EB00EE172D /* TabItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3A18C1FFC95EB00EE172D /* TabItemViewController.swift */; };
 		F4A3A18F1FFCC47800EE172D /* PostLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A3A18E1FFCC47800EE172D /* PostLocationViewController.swift */; };
-		F4B768861FFB747400A78A98 /* UserPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B768851FFB747400A78A98 /* UserPin.swift */; };
+		F4B768861FFB747400A78A98 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B768851FFB747400A78A98 /* StudentInformation.swift */; };
 		F4B768881FFB7AC200A78A98 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B768871FFB7AC200A78A98 /* ParseClient.swift */; };
 		F4B7688A1FFB7B4300A78A98 /* ParseContants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B768891FFB7B4300A78A98 /* ParseContants.swift */; };
 		F4C4AC541FFB0A4C00FD29F0 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C4AC531FFB0A4C00FD29F0 /* Reachability.swift */; };
@@ -26,13 +24,12 @@
 		F4CD2CD71FFCF387002F7791 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD2CD61FFCF387002F7791 /* UdacityClient.swift */; };
 		F4CD2CD91FFCFC6F002F7791 /* UdacityContants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD2CD81FFCFC6F002F7791 /* UdacityContants.swift */; };
 		F4CD2CDB1FFD25BA002F7791 /* PublicUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD2CDA1FFD25BA002F7791 /* PublicUserInfo.swift */; };
-		F4CD2CDD1FFD2713002F7791 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD2CDC1FFD2713002F7791 /* UserLocation.swift */; };
+		F4CD2CDD1FFD2713002F7791 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD2CDC1FFD2713002F7791 /* StudentLocation.swift */; };
 		F4E2111C1FFBCE1400728A32 /* UserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E2111B1FFBCE1400728A32 /* UserLoginViewController.swift */; };
 		F4E519161FFF13E700E4C88B /* CommonClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E519151FFF13E700E4C88B /* CommonClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F416802D20030EF300693BEB /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		F4225E721FF9D5CE006F4AB9 /* On the Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On the Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4225E751FF9D5CE006F4AB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4225E7A1FF9D5CE006F4AB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -40,12 +37,11 @@
 		F4225E7F1FF9D5CE006F4AB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F4225E811FF9D5CE006F4AB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F43446651FFBB93800F8969A /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
-		F43446671FFBBB0100F8969A /* UserTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTabBarController.swift; sourceTree = "<group>"; };
 		F43C2CBF1FFB47CE000BDB1A /* UserMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMapViewController.swift; sourceTree = "<group>"; };
 		F4A3A18A1FFC865A00EE172D /* InputToPostLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputToPostLocationViewController.swift; sourceTree = "<group>"; };
 		F4A3A18C1FFC95EB00EE172D /* TabItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItemViewController.swift; sourceTree = "<group>"; };
 		F4A3A18E1FFCC47800EE172D /* PostLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLocationViewController.swift; sourceTree = "<group>"; };
-		F4B768851FFB747400A78A98 /* UserPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPin.swift; sourceTree = "<group>"; };
+		F4B768851FFB747400A78A98 /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		F4B768871FFB7AC200A78A98 /* ParseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		F4B768891FFB7B4300A78A98 /* ParseContants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseContants.swift; sourceTree = "<group>"; };
 		F4C4AC531FFB0A4C00FD29F0 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -53,7 +49,7 @@
 		F4CD2CD61FFCF387002F7791 /* UdacityClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		F4CD2CD81FFCFC6F002F7791 /* UdacityContants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityContants.swift; sourceTree = "<group>"; };
 		F4CD2CDA1FFD25BA002F7791 /* PublicUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicUserInfo.swift; sourceTree = "<group>"; };
-		F4CD2CDC1FFD2713002F7791 /* UserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
+		F4CD2CDC1FFD2713002F7791 /* StudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
 		F4E2111B1FFBCE1400728A32 /* UserLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginViewController.swift; sourceTree = "<group>"; };
 		F4E519151FFF13E700E4C88B /* CommonClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,7 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				F4B768821FFB72DD00A78A98 /* Clients */,
-				F416802D20030EF300693BEB /* AppData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -122,8 +117,8 @@
 		F4B768841FFB733600A78A98 /* Parse */ = {
 			isa = PBXGroup;
 			children = (
-				F4B768851FFB747400A78A98 /* UserPin.swift */,
-				F4CD2CDC1FFD2713002F7791 /* UserLocation.swift */,
+				F4B768851FFB747400A78A98 /* StudentInformation.swift */,
+				F4CD2CDC1FFD2713002F7791 /* StudentLocation.swift */,
 				F4B768871FFB7AC200A78A98 /* ParseClient.swift */,
 				F4B768891FFB7B4300A78A98 /* ParseContants.swift */,
 			);
@@ -144,7 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				F4E2111B1FFBCE1400728A32 /* UserLoginViewController.swift */,
-				F43446671FFBBB0100F8969A /* UserTabBarController.swift */,
 				F4A3A18C1FFC95EB00EE172D /* TabItemViewController.swift */,
 				F43C2CBF1FFB47CE000BDB1A /* UserMapViewController.swift */,
 				F43446651FFBB93800F8969A /* UserListViewController.swift */,
@@ -228,12 +222,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4A3A18F1FFCC47800EE172D /* PostLocationViewController.swift in Sources */,
-				F43446681FFBBB0100F8969A /* UserTabBarController.swift in Sources */,
 				F4CAC4681FFC5E6200BEDB50 /* UIViewController+extentions.swift in Sources */,
 				F4E2111C1FFBCE1400728A32 /* UserLoginViewController.swift in Sources */,
 				F4A3A18D1FFC95EB00EE172D /* TabItemViewController.swift in Sources */,
-				F416802E20030EF300693BEB /* AppData.swift in Sources */,
-				F4CD2CDD1FFD2713002F7791 /* UserLocation.swift in Sources */,
+				F4CD2CDD1FFD2713002F7791 /* StudentLocation.swift in Sources */,
 				F4B768881FFB7AC200A78A98 /* ParseClient.swift in Sources */,
 				F4E519161FFF13E700E4C88B /* CommonClient.swift in Sources */,
 				F4225E761FF9D5CE006F4AB9 /* AppDelegate.swift in Sources */,
@@ -241,7 +233,7 @@
 				F43446661FFBB93800F8969A /* UserListViewController.swift in Sources */,
 				F4CD2CDB1FFD25BA002F7791 /* PublicUserInfo.swift in Sources */,
 				F4A3A18B1FFC865A00EE172D /* InputToPostLocationViewController.swift in Sources */,
-				F4B768861FFB747400A78A98 /* UserPin.swift in Sources */,
+				F4B768861FFB747400A78A98 /* StudentInformation.swift in Sources */,
 				F43C2CC01FFB47CE000BDB1A /* UserMapViewController.swift in Sources */,
 				F4CD2CD71FFCF387002F7791 /* UdacityClient.swift in Sources */,
 				F4CD2CD91FFCFC6F002F7791 /* UdacityContants.swift in Sources */,

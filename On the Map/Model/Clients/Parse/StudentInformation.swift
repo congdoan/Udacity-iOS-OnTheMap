@@ -1,5 +1,5 @@
 //
-//  UserPin.swift
+//  StudentInformation.swift
 //  On the Map
 //
 //  Created by Cong Doan on 1/2/18.
@@ -8,7 +8,18 @@
 
 import Foundation
 
-struct UserPin {
+struct StudentInformation {
+    
+    static var studentInfos = [StudentInformation]()
+    
+    static func setStudentInfos(_ newStudentInfos: [StudentInformation], observers: [TabItemViewController]) {
+        studentInfos = newStudentInfos
+        for tabItemViewController in observers {
+            tabItemViewController.hideDataFetchingIndicator()
+            tabItemViewController.updateUI()
+        }
+    }
+    
     
     let name: String
     let mediaURL: String
@@ -29,17 +40,17 @@ struct UserPin {
     }
     
     
-    static func userPinsFromResults(_ results: [[String:Any]]) -> [UserPin] {
-        var userPins = [UserPin]()
+    static func studentInformationsFromResults(_ results: [[String:Any]]) -> [StudentInformation] {
+        var userPins = [StudentInformation]()
         
         // Iterate through array of dictionaries, each UserPin is a dictionary
-        let udacityAccoundId = AppData.shared.userInfo.accountId
+        let udacityAccoundId = UdacityClient.shared.userInfo.accountId
         for result in results {
-            if let userPin = UserPin(result) {
+            if let userPin = StudentInformation(result) {
                 userPins.append(userPin)
                 
                 if let uniqueKey = result[ParseClient.JSONResponseKeys.uniqueKey] as? String, uniqueKey == udacityAccoundId {
-                    AppData.shared.objectIdOfUserLocation = (result[ParseClient.JSONResponseKeys.objectId] as! String)
+                    ParseClient.shared.objectIdOfStudentLocation = (result[ParseClient.JSONResponseKeys.objectId] as! String)
                 }
             }
         }

@@ -71,7 +71,7 @@ class PostLocationViewController: UIViewController {
                 return
             }
             
-            let message = AppData.shared.objectIdOfUserLocation == nil ? "Your Location Posted!" : "Your Location Updated!"
+            let message = ParseClient.shared.objectIdOfStudentLocation == nil ? "Your Location Posted!" : "Your Location Updated!"
             self.showAutoCloseAlert(message: message) {
                 self.navigationController?.popToRootViewController(animated: true)
                 let tabItemViewController = (self.navigationController?.viewControllers.first as? TabItemViewController)
@@ -94,10 +94,10 @@ class PostLocationViewController: UIViewController {
         }
     }
     
-    private func prepareUserLocationObject() -> UserLocation {
-        let userInfo = AppData.shared.userInfo!
+    private func prepareUserLocationObject() -> StudentLocation {
+        let userInfo = UdacityClient.shared.userInfo!
         let coordinate = placemark.location!.coordinate
-        let location = UserLocation(uniqueKey: userInfo.accountId,
+        let location = StudentLocation(uniqueKey: userInfo.accountId,
                                     firstName: userInfo.firstName, lastName: userInfo.lastName,
                                     mapString: mapString, mediaURL: mediaURL,
                                     latitude: coordinate.latitude, longitude: coordinate.longitude)

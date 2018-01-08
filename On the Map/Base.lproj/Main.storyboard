@@ -181,10 +181,10 @@
             </objects>
             <point key="canvasLocation" x="-266" y="67"/>
         </scene>
-        <!--User Tab Bar Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="kfQ-fS-esh">
             <objects>
-                <tabBarController storyboardIdentifier="MapListTabBarController" id="d8z-9e-9Mp" customClass="UserTabBarController" customModule="On_the_Map" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MapListTabBarController" id="d8z-9e-9Mp" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mSi-L4-R1L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

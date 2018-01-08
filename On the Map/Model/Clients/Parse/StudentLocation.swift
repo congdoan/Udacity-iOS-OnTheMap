@@ -1,5 +1,5 @@
 //
-//  UserLocation.swift
+//  StudentLocation.swift
 //  On the Map
 //
 //  Created by Cong Doan on 1/3/18.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct UserLocation {
+struct StudentLocation {
     
     let uniqueKey: String
     let firstName: String?
