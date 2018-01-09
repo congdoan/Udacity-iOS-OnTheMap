@@ -78,6 +78,8 @@ extension UserListViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         checkOpenLink(StudentInformation.studentInfos[indexPath.row].mediaURL)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

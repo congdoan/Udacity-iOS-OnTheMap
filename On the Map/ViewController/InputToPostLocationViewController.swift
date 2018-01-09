@@ -79,3 +79,12 @@ class InputToPostLocationViewController: UIViewController {
     }
 
 }
+
+extension InputToPostLocationViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+}

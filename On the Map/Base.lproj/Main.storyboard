@@ -31,6 +31,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="email"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="mZF-CS-WGO"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4wS-qx-Sse" userLabel="Password">
                                 <rect key="frame" x="57.666666666666657" y="253" width="260" height="32"/>
@@ -41,6 +44,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="password"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="wGh-Cq-vjl"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bKg-PE-RvV">
                                 <rect key="frame" x="57.666666666666657" y="297" width="260" height="32"/>
@@ -280,6 +286,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="email"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Bou-cu-YN7" id="OU7-Ng-NeJ"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a Website" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qwc-FT-OcW" userLabel="Password">
                                 <rect key="frame" x="57.666666666666657" y="258" width="260" height="32"/>
@@ -290,6 +299,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="password"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Bou-cu-YN7" id="KLf-Sl-VSO"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U2e-Jm-9TZ">
                                 <rect key="frame" x="57.666666666666657" y="302" width="260" height="32"/>

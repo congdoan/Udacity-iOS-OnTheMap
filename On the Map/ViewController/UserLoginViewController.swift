@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserLoginViewController: UIViewController, UITextFieldDelegate {
+class UserLoginViewController: UIViewController {
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -26,9 +26,6 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func configureUIControls() {
-        emailField.delegate = self
-        
-        passwordField.delegate = self
         passwordField.isSecureTextEntry = true
         
         logInButton.isEnabled = false
@@ -87,11 +84,16 @@ class UserLoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+}
+
+extension UserLoginViewController: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         if textField == passwordField && logInButton.isEnabled {
             authenticateUser()
         }
-        return true
+        return false
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
